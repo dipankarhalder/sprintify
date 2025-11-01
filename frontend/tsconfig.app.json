@@ -22,7 +22,12 @@
     "noUnusedParameters": true,
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+
+    /* Base path */
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
   "include": ["src", "src/vite-env.d.ts"]
 }
