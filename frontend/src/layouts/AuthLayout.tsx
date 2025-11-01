@@ -5,7 +5,7 @@ import { Outlet, Navigate } from 'react-router-dom'
 import { paths } from '@/config/paths'
 
 /** components */
-import { Logo } from '@/shared/Logo'
+import { Logo } from '@/components/main/Logo'
 
 export const AuthLayout = () => {
   const authTokenize = localStorage.getItem('authToken')
