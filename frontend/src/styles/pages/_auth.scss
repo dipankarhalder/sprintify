@@ -1,0 +1,170 @@
+@use '../core/color' as *;
+
+.app_auth_wrapper {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  position: relative;
+
+  .app_auth_logo {
+    position: absolute;
+    top: 20px;
+    left: 40px;
+    width: 120px;
+    height: auto;
+
+    a {
+      width: 100%;
+      height: auto;
+
+      & > svg {
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+
+  .app_auth_form_cover {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+
+    .app_auth_form_inside {
+      width: 420px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: $white;
+      padding: 28px 40px 36px;
+      border-radius: 10px;
+      box-shadow: $shadow-1;
+
+      .app_auth_inside_cover {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+
+        h1 {
+          font-family: $font;
+          width: 100%;
+          text-align: center;
+          font-size: 24px;
+          font-weight: 500;
+          margin-bottom: 4px;
+        }
+
+        p {
+          color: $bodytext;
+          width: 100%;
+          text-align: center;
+          font-size: 15px;
+          font-weight: 500;
+          line-height: 18px;
+          margin-bottom: 50px;
+        }
+
+        .app_auth_form {
+          width: 100%;
+          display: flex;
+
+          form {
+            gap: 14px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+
+            .app_form_input {
+              gap: 2px;
+              display: flex;
+              flex-direction: column;
+
+              label {
+                color: $bodytext;
+                width: 100%;
+                font-size: 14px;
+                font-weight: 500;
+              }
+
+              input {
+                width: 100%;
+                height: 44px;
+                padding: 0 16px;
+                border-radius: 6px;
+                font-weight: 500;
+                font-size: 15px;
+                border: 1px solid $border;
+              }
+            }
+
+            .app_forgot_link {
+              display: flex;
+              justify-content: center;
+              margin-bottom: 10px;
+
+              & > a {
+                color: $btnblue;
+                font-family: $font;
+                font-weight: 500;
+                font-size: 15px;
+              }
+            }
+
+            .app_form_btn {
+              display: flex;
+              gap: 10px;
+              margin-bottom: 8px;
+
+              button {
+                height: 44px;
+                width: 100%;
+                padding: 0 30px;
+                background: $btnblue;
+                color: $white;
+                font-weight: 500;
+                font-size: 15px;
+                border-radius: 6px;
+                border: 0px solid transparent;
+                margin-top: 10px;
+                cursor: pointer;
+                transition: 0.5s;
+              }
+            }
+
+            .app_register_link {
+              display: flex;
+              justify-content: center;
+
+              p {
+                font-family: $font;
+                font-weight: 500;
+                font-size: 15px;
+                margin-bottom: 0px;
+                line-height: 22px;
+
+                & > a {
+                  color: $btnblue;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .app_background_content {
+    z-index: -1;
+    background-image: linear-gradient(#fff 20%, #fff0), url('/auth_bg.svg');
+    background-position:
+      0 0,
+      50% 100%;
+    background-size:
+      auto,
+      156px 144px;
+    position: absolute;
+    inset: 0%;
+    opacity: 0.6;
+  }
+}
