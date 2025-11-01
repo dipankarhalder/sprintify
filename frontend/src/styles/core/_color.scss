@@ -1,20 +1,23 @@
 $font: 'Basel', sans-serif;
 
-$bg: #ececee;
-$btnblue: #005fb0;
-$sidebar: #f9f9f9;
+$black: #000000;
+$white: #ffffff;
+
+$gray-100: #e9eeec;
+$gray-300: #677685;
+$gray-600: #202a32;
 
 $blue-100: #c9e5fd;
 $blue-300: #82aed4;
 $blue-600: #4994d4;
 $blue-900: #3590df;
 
-$green-100: #c8fabe;
+$green-100: #eff7ed;
 $green-300: #afd6a7;
 $green-600: #7cbc6f;
-$green-900: #3b922a;
+$green-900: #3a922d;
 
-$red-100: #ffecec;
+$red-100: #fdefee;
 $red-300: #ffa7a5;
 $red-600: #fc4340;
 $red-900: #f30705;
@@ -24,7 +27,15 @@ $brown-300: #c56363;
 $brown-600: #b63b3b;
 $brown-900: #870001;
 
-$orange-100: #fef1e3;
+$orange-100: #fdefe4;
 $orange-300: #fdead8;
 $orange-600: #ef8233;
 $orange-900: #b95e21;
+
+$backcol: #ececee;
+$btnblue: #005fb0;
+$btnhover: #193d92;
+$sidebar: #f9f9f9;
+$border: #e4e4e4;
+$bodytext: #727272;
+$heading: #222124;
