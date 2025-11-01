@@ -13,6 +13,8 @@ import './styles/global.scss'
 /** components */
 import { AppRouters } from '@/routers'
 
+import { ToastProvider } from '@/shared/Toast/ToastProvider'
+
 /** validate the root element */
 const rootElem = document.getElementById('root') as HTMLElement | null
 if (!rootElem) {
@@ -23,7 +25,9 @@ if (!rootElem) {
 const root = createRoot(rootElem)
 root.render(
   <StrictMode>
-    <AppRouters />
+    <ToastProvider>
+      <AppRouters />
+    </ToastProvider>
     <TanStackDevtools
       config={{ hideUntilHover: true }}
       plugins={[FormDevtoolsPlugin()]}

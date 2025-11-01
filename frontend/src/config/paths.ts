@@ -1,3 +1,4 @@
+/** route paths */
 export const paths = {
   login: '/',
   register: '/register',
