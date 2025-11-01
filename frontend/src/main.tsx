@@ -11,17 +11,19 @@ import { FormDevtoolsPlugin } from '@tanstack/react-form-devtools'
 import './styles/global.scss'
 
 /** components */
-import App from './App.tsx'
+import { AppRouters } from '@/routers'
 
+/** validate the root element */
 const rootElem = document.getElementById('root') as HTMLElement | null
 if (!rootElem) {
   throw new Error("The document does not contain an element with ID 'root'.")
 }
 
+/** root element */
 const root = createRoot(rootElem)
 root.render(
   <StrictMode>
-    <App />
+    <AppRouters />
     <TanStackDevtools
       config={{ hideUntilHover: true }}
       plugins={[FormDevtoolsPlugin()]}
@@ -29,6 +31,7 @@ root.render(
   </StrictMode>,
 )
 
+/** pwa initialization */
 registerSW({
   immediate: true,
   onNeedRefresh() {
