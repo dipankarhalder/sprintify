@@ -1,6 +1,10 @@
 /** node modules */
 import { useContext } from 'react'
+import { Link } from 'react-router-dom'
 import { useForm } from '@tanstack/react-form'
+
+/** config */
+import { paths } from '@/config/paths'
 
 /** type */
 import type { AnyFieldApi } from '@tanstack/react-form'
@@ -48,9 +52,10 @@ export const SigninPage = () => {
   })
 
   return (
-    <div>
-      <div>
-        <h1>Simple Form Example</h1>
+    <div className="app_auth_inside_cover">
+      <h1>Welcome Back!</h1>
+      <p>Log in to continue</p>
+      <div className="app_auth_form">
         <form
           onSubmit={e => {
             e.preventDefault()
@@ -58,7 +63,7 @@ export const SigninPage = () => {
             form.handleSubmit()
           }}
         >
-          <div>
+          <div className="app_form_input">
             <form.Field
               name="email"
               validators={{
@@ -77,6 +82,7 @@ export const SigninPage = () => {
                       value={field.state.value}
                       onBlur={field.handleBlur}
                       onChange={e => field.handleChange(e.target.value)}
+                      autoComplete="email"
                     />
                     <FieldInfo field={field} />
                   </>
@@ -84,7 +90,7 @@ export const SigninPage = () => {
               }}
             />
           </div>
-          <div>
+          <div className="app_form_input">
             <form.Field
               name="password"
               validators={{
@@ -102,30 +108,32 @@ export const SigninPage = () => {
                     value={field.state.value}
                     onBlur={field.handleBlur}
                     onChange={e => field.handleChange(e.target.value)}
+                    autoComplete="password"
                   />
                   <FieldInfo field={field} />
                 </>
               )}
             />
           </div>
-          <form.Subscribe
-            selector={state => [state.canSubmit, state.isSubmitting]}
-            children={([canSubmit, isSubmitting]) => (
-              <>
+          <div className="app_forgot_link">
+            <Link to={paths.forgot}>Forgot password?</Link>
+          </div>
+          <div className="app_form_btn">
+            <form.Subscribe
+              selector={state => [state.canSubmit, state.isSubmitting]}
+              children={([canSubmit, isSubmitting]) => (
                 <button type="submit" disabled={!canSubmit}>
-                  {isSubmitting ? '...' : 'Submit'}
+                  {isSubmitting ? '...' : 'Continue'}
                 </button>
-                <button
-                  type="reset"
-                  onClick={() => {
-                    form.reset()
-                  }}
-                >
-                  Reset
-                </button>
-              </>
-            )}
-          />
+              )}
+            />
+          </div>
+          <div className="app_register_link">
+            <p>
+              Don't have an account? <br />
+              <Link to={paths.register}>Create an account</Link>
+            </p>
+          </div>
         </form>
       </div>
     </div>

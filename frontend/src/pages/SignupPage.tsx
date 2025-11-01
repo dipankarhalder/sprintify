@@ -1,6 +1,10 @@
 /** node modules */
 import { useContext } from 'react'
+import { Link } from 'react-router-dom'
 import { useForm } from '@tanstack/react-form'
+
+/** config */
+import { paths } from '@/config/paths'
 
 /** type */
 import type { AnyFieldApi } from '@tanstack/react-form'
@@ -52,9 +56,10 @@ export const SignupPage = () => {
   })
 
   return (
-    <div>
-      <div>
-        <h1>Simple Form Example</h1>
+    <div className="app_auth_inside_cover">
+      <h1>Create an account</h1>
+      <p>Please create an account to continue</p>
+      <div className="app_auth_form">
         <form
           onSubmit={e => {
             e.preventDefault()
@@ -62,7 +67,7 @@ export const SignupPage = () => {
             form.handleSubmit()
           }}
         >
-          <div>
+          <div className="app_form_input">
             <form.Field
               name="firstName"
               validators={{
@@ -87,7 +92,7 @@ export const SignupPage = () => {
               }}
             />
           </div>
-          <div>
+          <div className="app_form_input">
             <form.Field
               name="lastName"
               validators={{
@@ -112,7 +117,7 @@ export const SignupPage = () => {
               }}
             />
           </div>
-          <div>
+          <div className="app_form_input">
             <form.Field
               name="email"
               validators={{
@@ -138,7 +143,7 @@ export const SignupPage = () => {
               }}
             />
           </div>
-          <div>
+          <div className="app_form_input">
             <form.Field
               name="password"
               validators={{
@@ -162,24 +167,23 @@ export const SignupPage = () => {
               )}
             />
           </div>
-          <form.Subscribe
-            selector={state => [state.canSubmit, state.isSubmitting]}
-            children={([canSubmit, isSubmitting]) => (
-              <>
+          <div className="app_form_btn">
+            <form.Subscribe
+              selector={state => [state.canSubmit, state.isSubmitting]}
+              children={([canSubmit, isSubmitting]) => (
                 <button type="submit" disabled={!canSubmit}>
                   {isSubmitting ? '...' : 'Submit'}
                 </button>
-                <button
-                  type="reset"
-                  onClick={() => {
-                    form.reset()
-                  }}
-                >
-                  Reset
-                </button>
-              </>
-            )}
-          />
+              )}
+            />
+          </div>
+          <div className="app_register_link">
+            <p>
+              If you already have an account,
+              <br />
+              <Link to={paths.login}>Login now</Link>
+            </p>
+          </div>
         </form>
       </div>
     </div>
