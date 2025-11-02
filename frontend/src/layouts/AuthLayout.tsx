@@ -17,17 +17,20 @@ export const AuthLayout = () => {
 
   return (
     <div className="app_auth_wrapper">
-      <div className="app_auth_logo">
-        <Link to={paths.login}>
-          <Logo />
-        </Link>
-      </div>
-      <div className="app_auth_form_cover">
-        <div className="app_auth_form_inside">
-          <Outlet />
+      <div className="app_auth_wrapper_sidebar">
+        <div className="app_auth_logo">
+          <Link to={paths.login}>
+            <Logo />
+          </Link>
         </div>
+        <div className="app_auth_form_cover">
+          <div className="app_auth_form_inside">
+            <Outlet />
+          </div>
+        </div>
+        <div className="app_background_content"></div>
       </div>
-      <div className="app_background_content"></div>
+      <div className="app_auth_wrapper_background"></div>
     </div>
   )
 }
