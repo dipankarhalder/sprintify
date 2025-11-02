@@ -25,7 +25,7 @@ const FieldInfo = ({ field }: { field: AnyFieldApi }) => {
 }
 
 /** user default info */
-const defaultLoginUser: {
+const defaultRegisterUser: {
   firstName: string
   lastName: string
   username: string
@@ -36,7 +36,7 @@ const defaultLoginUser: {
   firstName: '',
   lastName: '',
   username: '',
-  reagion: '',
+  reagion: 'India',
   email: '',
   password: '',
 }
@@ -74,13 +74,12 @@ export const SignupPage = () => {
   ]
 
   const form = useForm({
-    defaultValues: defaultLoginUser,
+    defaultValues: defaultRegisterUser,
     onSubmit: async ({ value }) => {
-      console.log(value)
       showToast({
         type: 'success',
-        title: 'Success',
-        description: 'You have successfully signed in!',
+        title: 'Successfully registered',
+        description: JSON.stringify(value),
       })
     },
   })
