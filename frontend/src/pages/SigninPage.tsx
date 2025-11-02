@@ -42,11 +42,10 @@ export const SigninPage = () => {
   const form = useForm({
     defaultValues: defaultLoginUser,
     onSubmit: async ({ value }) => {
-      console.log(value)
       showToast({
         type: 'success',
-        title: 'Success',
-        description: 'You have successfully signed in!',
+        title: 'Successfully signed-in',
+        description: JSON.stringify(value),
       })
     },
   })
