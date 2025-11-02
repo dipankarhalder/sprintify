@@ -1,6 +1,10 @@
 /** node modules */
 import { useContext } from 'react'
+import { Link } from 'react-router-dom'
 import { useForm } from '@tanstack/react-form'
+
+/** config */
+import { paths } from '@/config/paths'
 
 /** type */
 import type { AnyFieldApi } from '@tanstack/react-form'
@@ -46,9 +50,13 @@ export const ForgotPage = () => {
   })
 
   return (
-    <div>
-      <div>
-        <h1>Simple Form Example</h1>
+    <div className="app_auth_inside_cover">
+      <h1>Reset your password</h1>
+      <p>
+        Enter your user account's verified email address and we will send you a
+        password reset link.
+      </p>
+      <div className="app_auth_form">
         <form
           onSubmit={e => {
             e.preventDefault()
@@ -56,7 +64,7 @@ export const ForgotPage = () => {
             form.handleSubmit()
           }}
         >
-          <div>
+          <div className="app_form_input">
             <form.Field
               name="email"
               validators={{
@@ -82,24 +90,21 @@ export const ForgotPage = () => {
               }}
             />
           </div>
-          <form.Subscribe
-            selector={state => [state.canSubmit, state.isSubmitting]}
-            children={([canSubmit, isSubmitting]) => (
-              <>
+          <div className="app_form_btn">
+            <form.Subscribe
+              selector={state => [state.canSubmit, state.isSubmitting]}
+              children={([canSubmit, isSubmitting]) => (
                 <button type="submit" disabled={!canSubmit}>
-                  {isSubmitting ? '...' : 'Submit'}
+                  {isSubmitting ? '...' : 'Send password rest email'}
                 </button>
-                <button
-                  type="reset"
-                  onClick={() => {
-                    form.reset()
-                  }}
-                >
-                  Reset
-                </button>
-              </>
-            )}
-          />
+              )}
+            />
+          </div>
+          <div className="app_register_link">
+            <p>
+              Back to <Link to={paths.login}>Login</Link>
+            </p>
+          </div>
         </form>
       </div>
     </div>
