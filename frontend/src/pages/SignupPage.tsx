@@ -1,5 +1,5 @@
 /** node modules */
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useForm } from '@tanstack/react-form'
 
@@ -11,6 +11,7 @@ import type { AnyFieldApi } from '@tanstack/react-form'
 
 /** components */
 import { ToastContext } from '@/shared/Toast/ToastContext'
+import { Dropdown } from '@/shared/Dropdown'
 
 /** fields error */
 const FieldInfo = ({ field }: { field: AnyFieldApi }) => {
@@ -27,11 +28,15 @@ const FieldInfo = ({ field }: { field: AnyFieldApi }) => {
 const defaultLoginUser: {
   firstName: string
   lastName: string
+  username: string
+  reagion: string
   email: string
   password: string
 } = {
   firstName: '',
   lastName: '',
+  username: '',
+  reagion: '',
   email: '',
   password: '',
 }
@@ -42,6 +47,31 @@ export const SignupPage = () => {
     throw new Error('SigninPage must be used within a ToastProvider')
   }
   const { showToast } = toast
+
+  const [selectedId, setSelectedId] = useState<string | undefined>()
+  const groups = [
+    {
+      group: 'Fruits',
+      items: [
+        { id: '1', label: 'Apple' },
+        { id: '2', label: 'Banana' },
+      ],
+    },
+    {
+      group: 'Vegetables',
+      items: [
+        { id: '3', label: 'Carrot' },
+        { id: '4', label: 'Broccoli' },
+      ],
+    },
+    {
+      group: 'Seafood',
+      items: [
+        { id: '5', label: 'Salmon' },
+        { id: '6', label: 'Tuna' },
+      ],
+    },
+  ]
 
   const form = useForm({
     defaultValues: defaultLoginUser,
@@ -67,43 +97,70 @@ export const SignupPage = () => {
             form.handleSubmit()
           }}
         >
-          <div className="app_form_input">
-            <form.Field
-              name="firstName"
-              validators={{
-                onSubmit: ({ value }) => {
-                  return !value ? 'Please enter a first name' : null
-                },
-              }}
-              children={field => {
-                return (
-                  <>
-                    <label htmlFor={field.name}>First Name:</label>
-                    <input
-                      id={field.name}
-                      name={field.name}
-                      value={field.state.value}
-                      onBlur={field.handleBlur}
-                      onChange={e => field.handleChange(e.target.value)}
-                    />
-                    <FieldInfo field={field} />
-                  </>
-                )
-              }}
-            />
+          <div className="app_form_input_row">
+            <div className="app_form_input">
+              <form.Field
+                name="firstName"
+                validators={{
+                  onSubmit: ({ value }) => {
+                    return !value ? 'Please enter a first name' : null
+                  },
+                }}
+                children={field => {
+                  return (
+                    <>
+                      <label htmlFor={field.name}>First Name:</label>
+                      <input
+                        id={field.name}
+                        name={field.name}
+                        value={field.state.value}
+                        onBlur={field.handleBlur}
+                        onChange={e => field.handleChange(e.target.value)}
+                      />
+                      <FieldInfo field={field} />
+                    </>
+                  )
+                }}
+              />
+            </div>
+            <div className="app_form_input">
+              <form.Field
+                name="lastName"
+                validators={{
+                  onSubmit: ({ value }) => {
+                    return !value ? 'Please enter a last name' : null
+                  },
+                }}
+                children={field => {
+                  return (
+                    <>
+                      <label htmlFor={field.name}>Last Name:</label>
+                      <input
+                        id={field.name}
+                        name={field.name}
+                        value={field.state.value}
+                        onBlur={field.handleBlur}
+                        onChange={e => field.handleChange(e.target.value)}
+                      />
+                      <FieldInfo field={field} />
+                    </>
+                  )
+                }}
+              />
+            </div>
           </div>
           <div className="app_form_input">
             <form.Field
-              name="lastName"
+              name="username"
               validators={{
                 onSubmit: ({ value }) => {
-                  return !value ? 'Please enter a last name' : null
+                  return !value ? 'Please enter a username' : null
                 },
               }}
               children={field => {
                 return (
                   <>
-                    <label htmlFor={field.name}>Last Name:</label>
+                    <label htmlFor={field.name}>Username:</label>
                     <input
                       id={field.name}
                       name={field.name}
@@ -112,6 +169,10 @@ export const SignupPage = () => {
                       onChange={e => field.handleChange(e.target.value)}
                     />
                     <FieldInfo field={field} />
+                    <p>
+                      Username may only contain alphanumeric characters or
+                      single hyphens, and cannot begin or end with a hyphen.
+                    </p>
                   </>
                 )
               }}
@@ -136,6 +197,7 @@ export const SignupPage = () => {
                       value={field.state.value}
                       onBlur={field.handleBlur}
                       onChange={e => field.handleChange(e.target.value)}
+                      autoComplete="email"
                     />
                     <FieldInfo field={field} />
                   </>
@@ -161,10 +223,37 @@ export const SignupPage = () => {
                     value={field.state.value}
                     onBlur={field.handleBlur}
                     onChange={e => field.handleChange(e.target.value)}
+                    autoComplete="password"
                   />
                   <FieldInfo field={field} />
+                  <p>
+                    Password should be at least 15 characters OR at least 8
+                    characters including a number and a lowercase letter.
+                  </p>
                 </>
               )}
+            />
+          </div>
+          <div className="app_form_input">
+            <form.Field
+              name="reagion"
+              validators={{
+                onSubmit: ({ value }) => {
+                  return !value ? 'Please enter a reagion' : null
+                },
+              }}
+              children={() => {
+                return (
+                  <>
+                    <label>Country/Region:</label>
+                    <Dropdown
+                      groups={groups}
+                      selectedId={selectedId}
+                      onSelect={item => setSelectedId(item.id)}
+                    />
+                  </>
+                )
+              }}
             />
           </div>
           <div className="app_form_btn">
@@ -172,16 +261,14 @@ export const SignupPage = () => {
               selector={state => [state.canSubmit, state.isSubmitting]}
               children={([canSubmit, isSubmitting]) => (
                 <button type="submit" disabled={!canSubmit}>
-                  {isSubmitting ? '...' : 'Submit'}
+                  {isSubmitting ? '...' : 'Create account'}
                 </button>
               )}
             />
           </div>
           <div className="app_register_link">
             <p>
-              If you already have an account,
-              <br />
-              <Link to={paths.login}>Login now</Link>
+              Already have an account? <Link to={paths.login}>Login now</Link>
             </p>
           </div>
         </form>

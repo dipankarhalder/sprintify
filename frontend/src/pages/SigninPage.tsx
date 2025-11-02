@@ -130,7 +130,7 @@ export const SigninPage = () => {
           </div>
           <div className="app_register_link">
             <p>
-              Don't have an account? <br />
+              New to Sprintify?{' '}
               <Link to={paths.register}>Create an account</Link>
             </p>
           </div>
