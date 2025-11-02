@@ -96,7 +96,7 @@
     padding: 6px 14px;
     color: $gray-300;
     border-radius: 4px;
-    background: lighten($backcol, 5%);
+    background: $backcol;
   }
 
   &__item {

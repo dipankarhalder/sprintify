@@ -38,7 +38,7 @@ export const ToastProvider: React.FC<ToastProviderProps> = ({ children }) => {
     description: '',
   })
 
-  const addToast = useCallback((message: ToastMessage, duration = 5000) => {
+  const addToast = useCallback((message: ToastMessage, duration = 500000) => {
     if (!message.type) return
 
     setToastState({
