@@ -1,6 +1,6 @@
 /** node modules */
 import { useContext } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from '@tanstack/react-form'
 
 /** config */
@@ -33,6 +33,7 @@ const defaultLoginUser: {
 }
 
 export const SigninPage = () => {
+  const navigate = useNavigate()
   const toast = useContext(ToastContext)
   if (!toast) {
     throw new Error('SigninPage must be used within a ToastProvider')
@@ -42,11 +43,13 @@ export const SigninPage = () => {
   const form = useForm({
     defaultValues: defaultLoginUser,
     onSubmit: async ({ value }) => {
+      localStorage.setItem('authToken', 'authenticated')
       showToast({
         type: 'success',
         title: 'Successfully signed-in',
         description: JSON.stringify(value),
       })
+      navigate(paths.admin)
     },
   })
 
