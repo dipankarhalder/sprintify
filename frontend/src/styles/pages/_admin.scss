@@ -1,0 +1,140 @@
+@use '../core/color' as *;
+
+.app_admin_wrapper {
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+
+  .app_sidebar {
+    position: fixed;
+    width: 300px;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+
+    .app_sidebar_column {
+      width: 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      background: $btnblue;
+      padding-top: 14px;
+
+      .app_sidebar_logo {
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 80px;
+
+        & > svg {
+          width: 30px;
+          height: 30px;
+        }
+      }
+
+      .app_product_links {
+        width: 100%;
+
+        & > ul {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          flex-direction: column;
+
+          & > li {
+            width: 100%;
+            display: flex;
+            padding: 15px 0;
+            text-align: center;
+            position: relative;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0);
+
+            & > svg {
+              width: 30px;
+              height: 30px;
+              color: $white;
+              opacity: 0.5;
+              cursor: pointer;
+              transition: 0.5s;
+            }
+
+            & > span {
+              position: absolute;
+              top: 50%;
+              left: 100%;
+              width: 170px;
+              color: $white;
+              display: none;
+              padding-left: 10px;
+              transform: translateY(-50%);
+
+              &:after {
+                content: '';
+                position: absolute;
+                width: 10px;
+                height: 10px;
+                left: 5px;
+                top: 50%;
+                transform: translateY(-50%) rotate(45deg);
+                background: $gray-600;
+              }
+
+              & > p {
+                text-align: left;
+                padding: 8px 12px;
+                border-radius: 8px;
+                font-size: 14px;
+                font-weight: 500;
+                background: $gray-600;
+              }
+            }
+
+            &:hover {
+              background: rgba(0, 0, 0, 0.3);
+
+              & > svg {
+                opacity: 1;
+                transition: 0.5s;
+              }
+
+              & > span {
+                display: block;
+              }
+            }
+
+            &.app_active_link {
+              background: rgba(0, 0, 0, 0.3);
+
+              & > svg {
+                opacity: 1;
+                transition: 0.5s;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .app_sidebar_content {
+      display: flex;
+      width: 100%;
+      padding: 14px 18px;
+      flex-direction: column;
+      gap: 14px;
+    }
+  }
+
+  .app_admin_cover_wrapper {
+    margin: 15px;
+    width: calc(100% - 330px);
+    height: calc(100vh - 30px);
+    background: $white;
+    margin-left: 315px;
+    border-radius: 20px;
+    box-shadow: $shadow-1;
+  }
+}

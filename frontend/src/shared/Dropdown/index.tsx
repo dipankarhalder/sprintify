@@ -13,9 +13,10 @@ import { getCache, setCache } from '@/utils/cache'
 /** interfaces */
 interface DropdownProps {
   cacheKey?: string
-  groups: DropdownGroup[]
+  groups: DropdownGroup[] | DropdownItem[]
   onSelect: (item: DropdownItem) => void
   selectedId?: string
+  searchOption?: boolean
   placeholder?: string
 }
 
@@ -24,6 +25,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
   groups,
   onSelect,
   selectedId,
+  searchOption = true,
   placeholder = 'Select...',
 }) => {
   const [isOpen, setIsOpen] = useState(false)
@@ -37,6 +39,11 @@ export const Dropdown: React.FC<DropdownProps> = ({
     }
   })
 
+  /** determine if input data is already grouped */
+  const isGrouped = useMemo(() => {
+    return Array.isArray(groups) && groups.length > 0 && 'items' in groups[0]
+  }, [groups])
+
   /** cache list on first render */
   useEffect(() => {
     if (!getCache(cacheKey)) {
@@ -44,20 +51,29 @@ export const Dropdown: React.FC<DropdownProps> = ({
     }
   }, [cacheKey, groups])
 
-  /** filter items by global search */
-  const filteredGroups = useMemo(() => {
-    const cachedGroups: DropdownGroup[] = getCache(cacheKey) || groups
-    if (!search.trim()) return cachedGroups
+  /** filter items by search term */
+  const filteredData = useMemo(() => {
+    const cachedData = getCache(cacheKey) || groups
 
-    return cachedGroups
-      .map(group => ({
-        ...group,
-        items: group.items.filter(item =>
-          item.label.toLowerCase().includes(search.toLowerCase()),
-        ),
-      }))
-      .filter(group => group.items.length > 0)
-  }, [search, groups, cacheKey])
+    if (!search.trim()) return cachedData
+
+    if (isGrouped) {
+      // grouped data
+      return (cachedData as DropdownGroup[])
+        .map(group => ({
+          ...group,
+          items: group.items.filter(item =>
+            item.label.toLowerCase().includes(search.toLowerCase()),
+          ),
+        }))
+        .filter(group => group.items.length > 0)
+    } else {
+      // flat data
+      return (cachedData as DropdownItem[]).filter(item =>
+        item.label.toLowerCase().includes(search.toLowerCase()),
+      )
+    }
+  }, [search, groups, cacheKey, isGrouped])
 
   /** highlight search text */
   const highlightText = (text: string) => {
@@ -72,9 +88,15 @@ export const Dropdown: React.FC<DropdownProps> = ({
     )
   }
 
+  const allItems: DropdownItem[] = useMemo(() => {
+    if (isGrouped) {
+      return (groups as DropdownGroup[]).flatMap(g => g.items)
+    }
+    return groups as DropdownItem[]
+  }, [groups, isGrouped])
+
   const selectedLabel =
-    groups.flatMap(g => g.items).find(i => i.id === selectedId)?.label ??
-    placeholder
+    allItems.find(i => i.id === selectedId)?.label ?? placeholder
 
   return (
     <details
@@ -96,48 +118,77 @@ export const Dropdown: React.FC<DropdownProps> = ({
         {selectedLabel}
         {isOpen ? <Uarrow /> : <Darrow />}
       </summary>
+
       {isOpen && (
         <div className="dropdown__menu" role="listbox">
-          <div className="dropdown__search-cover">
-            <Search />
-            <input
-              className="dropdown__search"
-              type="text"
-              placeholder="Search..."
-              value={search}
-              onChange={e => setSearch(e.target.value)}
-              aria-label="Search options"
-            />
-          </div>
-
-          {filteredGroups.map(group => (
-            <div key={group.group} className="dropdown__group">
-              <div className="dropdown__group-label">{group.group}</div>
-              {group.items.map(item => (
-                <div
-                  key={item.id}
-                  role="option"
-                  tabIndex={0}
-                  className={clsx('dropdown__item', {
-                    'dropdown__item--selected': item.id === selectedId,
-                  })}
-                  onClick={() => {
-                    onSelect(item)
-                    setIsOpen(false)
-                  }}
-                >
-                  {item.icon && (
-                    <span className="dropdown__icon">{item.icon}</span>
-                  )}
-                  <span className="dropdown__label">
-                    {highlightText(item.label)}
-                  </span>
-                </div>
-              ))}
+          {searchOption && (
+            <div className="dropdown__search-cover">
+              <Search />
+              <input
+                className="dropdown__search"
+                type="text"
+                placeholder="Search..."
+                value={search}
+                onChange={e => setSearch(e.target.value)}
+                aria-label="Search options"
+              />
             </div>
-          ))}
+          )}
 
-          {filteredGroups.length === 0 && (
+          {isGrouped ? (
+            filteredData.length > 0 ? (
+              (filteredData as DropdownGroup[]).map(group => (
+                <div key={group.group} className="dropdown__group">
+                  <div className="dropdown__group-label">{group.group}</div>
+                  {group.items.map(item => (
+                    <div
+                      key={item.id}
+                      role="option"
+                      tabIndex={0}
+                      className={clsx('dropdown__item', {
+                        'dropdown__item--selected': item.id === selectedId,
+                      })}
+                      onClick={() => {
+                        onSelect(item)
+                        setIsOpen(false)
+                      }}
+                    >
+                      {item.icon && (
+                        <span className="dropdown__icon">{item.icon}</span>
+                      )}
+                      <span className="dropdown__label">
+                        {highlightText(item.label)}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              ))
+            ) : (
+              <div className="dropdown__empty">No results found</div>
+            )
+          ) : (filteredData as DropdownItem[]).length > 0 ? (
+            (filteredData as DropdownItem[]).map(item => (
+              <div
+                key={item.id}
+                role="option"
+                tabIndex={0}
+                className={clsx('dropdown__item', {
+                  'dropdown__item--selected': item.id === selectedId,
+                })}
+                onClick={() => {
+                  onSelect(item)
+                  setIsOpen(false)
+                }}
+              >
+                {item.icon && (
+                  <span className="dropdown__icon">{item.icon}</span>
+                )}
+                <span className="dropdown__label">
+                  {highlightText(item.label)}
+                </span>
+              </div>
+            ))
+          ) : (
             <div className="dropdown__empty">No results found</div>
           )}
         </div>
