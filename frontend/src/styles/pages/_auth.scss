@@ -31,10 +31,10 @@
     }
 
     .app_auth_form_cover {
-      display: flex;
+      position: relative;
       width: 100%;
-      justify-content: center;
-      align-items: center;
+      height: 100vh;
+      overflow-y: auto;
 
       .app_auth_form_inside {
         width: 420px;
@@ -46,6 +46,11 @@
         padding: 28px 40px 36px;
         border-radius: 10px;
         box-shadow: $shadow-1;
+        position: absolute;
+        top: 10rem;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-bottom: 50px;
 
         .app_auth_inside_cover {
           width: 100%;
@@ -144,6 +149,7 @@
                 gap: 10px;
                 margin-bottom: 8px;
 
+                & > span,
                 button {
                   height: 44px;
                   width: 100%;
@@ -157,6 +163,11 @@
                   margin-top: 10px;
                   cursor: pointer;
                   transition: 0.5s;
+                }
+
+                & > span {
+                  text-align: center;
+                  line-height: 44px;
                 }
               }
 

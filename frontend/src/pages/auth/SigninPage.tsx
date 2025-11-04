@@ -1,5 +1,5 @@
 /** node modules */
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from '@tanstack/react-form'
 
@@ -10,6 +10,8 @@ import { paths } from '@/config/paths'
 import type { AnyFieldApi } from '@tanstack/react-form'
 
 /** components */
+import { AuthFooter } from '@/components/auth/AuthFooter'
+import { SocialAuth } from '@/components/auth/SocialAuth'
 import { ToastContext } from '@/shared/Toast/ToastContext'
 
 /** fields error */
@@ -34,6 +36,7 @@ const defaultLoginUser: {
 
 export const SigninPage = () => {
   const navigate = useNavigate()
+  const [isVerified, setIsverified] = useState(false)
   const toast = useContext(ToastContext)
   if (!toast) {
     throw new Error('SigninPage must be used within a ToastProvider')
@@ -76,7 +79,9 @@ export const SigninPage = () => {
               children={field => {
                 return (
                   <>
-                    <label htmlFor={field.name}>Email:</label>
+                    <label htmlFor={field.name}>
+                      Email <span>*</span>
+                    </label>
                     <input
                       type="email"
                       id={field.name}
@@ -92,44 +97,53 @@ export const SigninPage = () => {
               }}
             />
           </div>
-          <div className="app_form_input">
-            <form.Field
-              name="password"
-              validators={{
-                onSubmit: ({ value }) => {
-                  return !value ? 'Please enter a valid password' : null
-                },
-              }}
-              children={field => (
-                <>
-                  <label htmlFor={field.name}>Password:</label>
-                  <input
-                    type="password"
-                    id={field.name}
-                    name={field.name}
-                    value={field.state.value}
-                    onBlur={field.handleBlur}
-                    onChange={e => field.handleChange(e.target.value)}
-                    autoComplete="password"
-                  />
-                  <FieldInfo field={field} />
-                </>
-              )}
-            />
-          </div>
+          {isVerified && (
+            <div className="app_form_input">
+              <form.Field
+                name="password"
+                validators={{
+                  onSubmit: ({ value }) => {
+                    return !value ? 'Please enter a valid password' : null
+                  },
+                }}
+                children={field => (
+                  <>
+                    <label htmlFor={field.name}>Password:</label>
+                    <input
+                      type="password"
+                      id={field.name}
+                      name={field.name}
+                      value={field.state.value}
+                      onBlur={field.handleBlur}
+                      onChange={e => field.handleChange(e.target.value)}
+                      autoComplete="password"
+                    />
+                    <FieldInfo field={field} />
+                  </>
+                )}
+              />
+            </div>
+          )}
           <div className="app_forgot_link">
             <Link to={paths.forgot}>Forgot password?</Link>
           </div>
-          <div className="app_form_btn">
-            <form.Subscribe
-              selector={state => [state.canSubmit, state.isSubmitting]}
-              children={([canSubmit, isSubmitting]) => (
-                <button type="submit" disabled={!canSubmit}>
-                  {isSubmitting ? '...' : 'Continue'}
-                </button>
-              )}
-            />
-          </div>
+          {isVerified ? (
+            <div className="app_form_btn">
+              <form.Subscribe
+                selector={state => [state.canSubmit, state.isSubmitting]}
+                children={([canSubmit, isSubmitting]) => (
+                  <button type="submit" disabled={!canSubmit}>
+                    {isSubmitting ? '...' : 'Continue'}
+                  </button>
+                )}
+              />
+            </div>
+          ) : (
+            <div className="app_form_btn">
+              <span onClick={() => setIsverified(true)}>Continue</span>
+            </div>
+          )}
+          <SocialAuth />
           <div className="app_register_link">
             <p>
               New to Sprintify?{' '}
@@ -137,6 +151,7 @@ export const SigninPage = () => {
             </p>
           </div>
         </form>
+        <AuthFooter />
       </div>
     </div>
   )
