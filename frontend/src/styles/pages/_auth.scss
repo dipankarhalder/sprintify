@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use '../core/color' as *;
 
 .app_auth_wrapper {
@@ -60,22 +61,23 @@
             margin-bottom: 4px;
           }
 
-          p {
+          & > p {
             color: $bodytext;
             width: 100%;
             text-align: center;
             font-size: 15px;
             font-weight: 500;
             line-height: 18px;
-            margin-bottom: 50px;
+            margin-bottom: 20px;
           }
 
           .app_auth_form {
             width: 100%;
             display: flex;
+            flex-direction: column;
 
             form {
-              gap: 14px;
+              gap: 10px;
               width: 100%;
               display: flex;
               flex-direction: column;
@@ -126,14 +128,14 @@
 
               .app_forgot_link {
                 display: flex;
-                justify-content: center;
-                margin-bottom: 10px;
+                justify-content: flex-end;
+                margin-bottom: 0px;
 
                 & > a {
                   color: $btnblue;
                   font-family: $font;
                   font-weight: 500;
-                  font-size: 15px;
+                  font-size: 14px;
                 }
               }
 
@@ -158,6 +160,63 @@
                 }
               }
 
+              .app_or_text {
+                width: 100%;
+                margin-top: 10px;
+
+                & > p {
+                  color: $bodytext;
+                  width: 100%;
+                  text-align: center;
+                  font-size: 15px;
+                  font-weight: 500;
+                }
+              }
+
+              .app_social_login_register {
+                width: 100%;
+                margin-bottom: 20px;
+
+                & > ul {
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  width: 100%;
+                  gap: 10px;
+
+                  & > li {
+                    gap: 6px;
+                    width: 33%;
+                    display: flex;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 6px 10px;
+                    border-radius: 6px;
+                    border: 1px solid color.adjust($border, $lightness: -20%);
+
+                    & > svg {
+                      width: 16px;
+                      height: 16px;
+                    }
+
+                    & > p {
+                      color: $bodytext;
+                      font-size: 13px;
+                      font-weight: 500;
+                    }
+
+                    &:nth-child(2) {
+                      & > svg {
+                        width: 19px;
+                        height: 19px;
+                      }
+                    }
+                  }
+                }
+              }
+
               .app_register_link {
                 display: flex;
                 justify-content: center;
@@ -165,13 +224,74 @@
                 & > p {
                   font-family: $font;
                   font-weight: 500;
-                  font-size: 15px;
+                  font-size: 14px;
                   margin-bottom: 0px;
                   line-height: 22px;
 
                   & > a {
                     color: $btnblue;
                     text-decoration: underline;
+                  }
+                }
+              }
+            }
+
+            .app_policy_info {
+              width: 100%;
+              border-top: 1px solid $border;
+              margin-top: 24px;
+              padding-top: 18px;
+
+              & > p {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-family: $font;
+                font-weight: 500;
+                font-size: 12px;
+                margin-bottom: 0px;
+                color: $gray-300;
+
+                & > a {
+                  gap: 5px;
+                  display: flex;
+                  color: $btnblue;
+                  align-items: center;
+                  text-decoration: underline;
+
+                  & > svg {
+                    width: 10px;
+                    height: 10px;
+                  }
+                }
+              }
+
+              & > ul {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 24px;
+                margin-top: 24px;
+
+                & > li {
+                  width: auto;
+
+                  & > a {
+                    gap: 5px;
+                    width: 100%;
+                    display: flex;
+                    font-weight: 500;
+                    font-size: 12px;
+                    justify-content: center;
+                    align-items: center;
+                    color: $btnblue;
+                    text-decoration: underline;
+
+                    & > svg {
+                      width: 10px;
+                      height: 10px;
+                    }
                   }
                 }
               }
