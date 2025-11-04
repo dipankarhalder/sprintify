@@ -7,13 +7,13 @@
 
   .app_sidebar {
     position: fixed;
-    width: 300px;
+    width: 340px;
     height: 100vh;
     display: flex;
     flex-direction: row;
 
     .app_sidebar_column {
-      width: 60px;
+      width: 90px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -27,7 +27,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-bottom: 80px;
+        margin-bottom: 4rem;
 
         & > svg {
           width: 30px;
@@ -60,6 +60,10 @@
               opacity: 0.5;
               cursor: pointer;
               transition: 0.5s;
+
+              & > path {
+                stroke-width: 1.4;
+              }
             }
 
             & > span {
@@ -125,16 +129,68 @@
       padding: 14px 18px;
       flex-direction: column;
       gap: 14px;
+
+      .app_sidebar_main_menu {
+        width: 100%;
+
+        & > ul {
+          width: 100%;
+          gap: 19px;
+          display: flex;
+          flex-direction: column;
+
+          & > li {
+            display: flex;
+            width: 100%;
+            gap: 14px;
+
+            & > svg {
+              width: 20px;
+              height: 20px;
+            }
+          }
+        }
+      }
+
+      .app_sidebar_assignee {
+        width: 100%;
+        margin-top: 20px;
+
+        & > h5 {
+          color: $btnblue;
+          font-size: 14px;
+          font-weight: 500;
+          margin-bottom: 10px;
+        }
+
+        & > ul {
+          width: 100%;
+          gap: 12px;
+          display: flex;
+          flex-direction: column;
+
+          & > li {
+            display: flex;
+            width: 100%;
+            gap: 14px;
+
+            & > span {
+              width: 30px;
+              height: 30px;
+            }
+          }
+        }
+      }
     }
   }
 
   .app_admin_cover_wrapper {
     margin: 15px;
-    width: calc(100% - 330px);
+    width: calc(100% - 370px);
     height: calc(100vh - 30px);
     background: $white;
-    margin-left: 315px;
-    border-radius: 20px;
+    margin-left: 355px;
+    border-radius: 30px;
     box-shadow: $shadow-1;
   }
 }
