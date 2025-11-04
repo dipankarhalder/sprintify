@@ -1,5 +1,4 @@
 /** node modules */
-import { Link } from 'react-router-dom'
 import { Outlet, Navigate } from 'react-router-dom'
 
 /** config */
@@ -19,9 +18,7 @@ export const AuthLayout = () => {
     <div className="app_auth_wrapper">
       <div className="app_auth_wrapper_sidebar">
         <div className="app_auth_logo">
-          <Link to={paths.login}>
-            <Logo />
-          </Link>
+          <Logo />
         </div>
         <div className="app_auth_form_cover">
           <div className="app_auth_form_inside">
@@ -30,7 +27,7 @@ export const AuthLayout = () => {
         </div>
         <div className="app_background_content"></div>
       </div>
-      <div className="app_auth_wrapper_background"></div>
+      {/* <div className="app_auth_wrapper_background"></div> */}
     </div>
   )
 }

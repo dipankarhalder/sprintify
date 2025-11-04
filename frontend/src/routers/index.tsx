@@ -10,8 +10,10 @@ import { AdminLayout } from '@/layouts/AdminLayout'
 
 /** pages */
 import { ErrorPage } from '@/pages/ErrorPage'
-import { SigninPage } from '@/pages/SigninPage'
-import { SignupPage } from '@/pages/SignupPage'
+
+import { EmailverifyPage } from '@/pages/auth/EmailverifyPage'
+import { SigninPage } from '@/pages/auth/SigninPage'
+import { SignupPage } from '@/pages/auth/SignupPage'
 import { ForgotPage } from '@/pages/ForgotPage'
 import { DashboardPage } from '@/pages/DashboardPage'
 
@@ -22,7 +24,7 @@ const routes = createBrowserRouter([
     element: <AuthLayout />,
     errorElement: <ErrorPage />,
     children: [
-      { index: true, element: <SigninPage /> },
+      { index: true, element: <EmailverifyPage /> },
       { path: paths.register, element: <SignupPage /> },
       { path: paths.forgot, element: <ForgotPage /> },
     ],
