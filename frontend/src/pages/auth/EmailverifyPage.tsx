@@ -6,10 +6,15 @@ import { useForm } from '@tanstack/react-form'
 /** config */
 import { paths } from '@/config/paths'
 
+/** icon */
+import { Google, Microsoft, Apple } from '@/icons'
+
 /** type */
 import type { AnyFieldApi } from '@tanstack/react-form'
 
 /** components */
+import { AuthFooter } from '@/components/auth/AuthFooter'
+import { SocialAuth } from '@/components/auth/SocialAuth'
 import { ToastContext } from '@/shared/Toast/ToastContext'
 
 /** fields error */
@@ -105,6 +110,7 @@ export const EmailverifyPage = () => {
               )}
             />
           </div>
+          <SocialAuth />
           <div className="app_register_link">
             <p>
               New to Sprintify?{' '}
@@ -112,6 +118,7 @@ export const EmailverifyPage = () => {
             </p>
           </div>
         </form>
+        <AuthFooter />
       </div>
     </div>
   )
