@@ -1,17 +1,18 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useForm } from '@tanstack/react-form'
-import { ToastContext } from '@/shared/Toast/ToastContext'
-import { FieldInfo } from '@/utils/fieldValidator'
 import { paths } from '@/config/paths'
+import { ToastContext } from '@/shared/Toast/ToastContext'
+import { Dropdown } from '@/shared/Dropdown'
 
+/** user default info */
 const defaultRegisterUser: {
-  username: string
+  reagion: string
 } = {
-  username: '',
+  reagion: 'India',
 }
 
-export const VerifiedEmailPage = () => {
+export const CountrySelection = () => {
   const navigate = useNavigate()
   const toast = useContext(ToastContext)
   if (!toast) {
@@ -19,21 +20,33 @@ export const VerifiedEmailPage = () => {
   }
   const { showToast } = toast
 
+  const [selectedId, setSelectedId] = useState<string | undefined>()
+  const groups = [
+    { id: '1', label: 'India' },
+    { id: '2', label: 'Australia' },
+    { id: '3', label: 'USA' },
+    { id: '4', label: 'UK' },
+    { id: '5', label: 'Japan' },
+    { id: '6', label: 'Russia' },
+  ]
+
   const form = useForm({
     defaultValues: defaultRegisterUser,
     onSubmit: async ({ value }) => {
+      localStorage.removeItem('userEmail')
+      localStorage.setItem('authToken', 'authenticated')
       showToast({
         type: 'success',
         title: 'Successfully registered',
         description: JSON.stringify(value),
       })
-      navigate(paths.selCountry)
+      navigate(paths.admin)
     },
   })
 
   return (
     <div className="app_auth_inside_cover">
-      <h1>Choose a username</h1>
+      <h1>Choose your country</h1>
       <p>
         You're almost there! <br />
         Let's finish setting up your account
@@ -48,36 +61,21 @@ export const VerifiedEmailPage = () => {
         >
           <div className="app_form_input">
             <form.Field
-              name="username"
+              name="reagion"
               validators={{
                 onSubmit: ({ value }) => {
-                  return !value ? 'Please enter a username' : null
+                  return !value ? 'Please enter a reagion' : null
                 },
               }}
-              children={field => {
+              children={() => {
                 return (
                   <>
-                    <label htmlFor={field.name}>Username:</label>
-                    <input
-                      id={field.name}
-                      name={field.name}
-                      value={field.state.value}
-                      onBlur={field.handleBlur}
-                      onChange={e => field.handleChange(e.target.value)}
+                    <label>Country/Region:</label>
+                    <Dropdown
+                      groups={groups}
+                      selectedId={selectedId}
+                      onSelect={item => setSelectedId(item.id)}
                     />
-                    <FieldInfo field={field} />
-                    <p>
-                      Username may only contain alphanumeric characters or
-                      single hyphens, and cannot begin or end with a hyphen.
-                    </p>
-                    <div className="app_sugg_username_list">
-                      <p>Suggested username</p>
-                      <ul>
-                        <li>dipankar-234</li>
-                        <li>deepankar-h24</li>
-                        <li>dip-23436</li>
-                      </ul>
-                    </div>
                   </>
                 )
               }}

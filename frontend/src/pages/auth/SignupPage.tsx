@@ -5,20 +5,8 @@ import { verify } from '@/config/image'
 import { CircleTick } from '@/icons'
 import { paths } from '@/config/paths'
 import { ToastContext } from '@/shared/Toast/ToastContext'
-import type { AnyFieldApi } from '@tanstack/react-form'
+import { FieldInfo } from '@/utils/fieldValidator'
 
-/** fields error */
-const FieldInfo = ({ field }: { field: AnyFieldApi }) => {
-  const { isTouched, isValid, isValidating, errors } = field.state.meta
-  return (
-    <>
-      {isTouched && !isValid && <em>{errors.join(', ')}</em>}
-      {isValidating && 'Validating...'}
-    </>
-  )
-}
-
-/** user default info */
 const defaultRegisterUser: {
   firstName: string
   lastName: string
@@ -69,6 +57,7 @@ export const SignupPage = () => {
               <p>
                 {emailAddress}
                 <img src={verify} alt={emailAddress} />
+                <span>(Not Verified)</span>
               </p>
             )}
           </div>
