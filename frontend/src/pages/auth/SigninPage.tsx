@@ -36,7 +36,7 @@ const defaultLoginUser: {
 
 export const SigninPage = () => {
   const navigate = useNavigate()
-  const [isVerified, setIsverified] = useState(false)
+  const [isVerified, setIsVerified] = useState(false)
   const toast = useContext(ToastContext)
   if (!toast) {
     throw new Error('SigninPage must be used within a ToastProvider')
@@ -46,13 +46,43 @@ export const SigninPage = () => {
   const form = useForm({
     defaultValues: defaultLoginUser,
     onSubmit: async ({ value }) => {
-      localStorage.setItem('authToken', 'authenticated')
-      showToast({
-        type: 'success',
-        title: 'Successfully signed-in',
-        description: JSON.stringify(value),
-      })
-      navigate(paths.admin)
+      const { email, password } = value
+
+      // STEP 1: Handle first submission (email check)
+      if (!isVerified) {
+        if (email === 'dipankar@gmail.com') {
+          // valid email — show password field
+          localStorage.removeItem('userEmail')
+          setIsVerified(true)
+          return
+        } else {
+          // any other email — redirect to register page
+          localStorage.setItem('userEmail', email)
+          navigate(paths.register)
+          return
+        }
+      }
+
+      // STEP 2: Handle actual login when verified
+      if (isVerified) {
+        if (!password) {
+          showToast({
+            type: 'error',
+            title: 'Password Required',
+            description: 'Please enter your password.',
+          })
+          return
+        }
+
+        localStorage.removeItem('userEmail')
+        localStorage.setItem('authToken', 'authenticated')
+        showToast({
+          type: 'success',
+          title: 'Successfully signed-in',
+          description: JSON.stringify(value),
+        })
+        navigate(paths.admin)
+      }
     },
   })
 
@@ -90,6 +120,7 @@ export const SigninPage = () => {
                       onBlur={field.handleBlur}
                       onChange={e => field.handleChange(e.target.value)}
                       autoComplete="email"
+                      disabled={isVerified}
                     />
                     <FieldInfo field={field} />
                   </>
@@ -108,7 +139,7 @@ export const SigninPage = () => {
                 }}
                 children={field => (
                   <>
-                    <label htmlFor={field.name}>Password:</label>
+                    <label htmlFor={field.name}>Password</label>
                     <input
                       type="password"
                       id={field.name}
@@ -116,7 +147,7 @@ export const SigninPage = () => {
                       value={field.state.value}
                       onBlur={field.handleBlur}
                       onChange={e => field.handleChange(e.target.value)}
-                      autoComplete="password"
+                      autoComplete="current-password"
                     />
                     <FieldInfo field={field} />
                   </>
@@ -127,22 +158,20 @@ export const SigninPage = () => {
           <div className="app_forgot_link">
             <Link to={paths.forgot}>Forgot password?</Link>
           </div>
-          {isVerified ? (
-            <div className="app_form_btn">
-              <form.Subscribe
-                selector={state => [state.canSubmit, state.isSubmitting]}
-                children={([canSubmit, isSubmitting]) => (
-                  <button type="submit" disabled={!canSubmit}>
-                    {isSubmitting ? '...' : 'Continue'}
-                  </button>
-                )}
-              />
-            </div>
-          ) : (
-            <div className="app_form_btn">
-              <span onClick={() => setIsverified(true)}>Continue</span>
-            </div>
-          )}
+          <div className="app_form_btn">
+            <form.Subscribe
+              selector={state => [state.canSubmit, state.isSubmitting]}
+              children={([canSubmit, isSubmitting]) => (
+                <button type="submit" disabled={!canSubmit}>
+                  {isSubmitting
+                    ? '...'
+                    : isVerified
+                      ? 'Login to access'
+                      : 'Continue'}
+                </button>
+              )}
+            />
+          </div>
           <SocialAuth />
           <div className="app_register_link">
             <p>

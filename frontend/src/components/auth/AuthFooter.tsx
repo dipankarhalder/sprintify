@@ -1,14 +1,14 @@
-/** node modules */
 import { Link } from 'react-router-dom'
-
-/** icon */
 import { Alink } from '@/icons'
 
 export const AuthFooter = () => {
   return (
     <div className="app_policy_info">
       <p>
-        Login one time for access PMS, CRM, ERP and&nbsp;
+        Login one time for access&nbsp;
+        <span className="app_notify app_pms">PMS,</span>&nbsp;
+        <span className="app_notify app_crm">CRM,</span>
+        &nbsp;<span className="app_notify app_erp">ERP</span>&nbsp;and&nbsp;
         <Link to="/">
           more <Alink />
         </Link>
