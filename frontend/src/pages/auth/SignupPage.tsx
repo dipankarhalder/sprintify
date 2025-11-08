@@ -1,17 +1,11 @@
-/** node modules */
-import { useContext, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useForm } from '@tanstack/react-form'
-
-/** config */
+import { verify } from '@/config/image'
+import { CircleTick } from '@/icons'
 import { paths } from '@/config/paths'
-
-/** type */
-import type { AnyFieldApi } from '@tanstack/react-form'
-
-/** components */
 import { ToastContext } from '@/shared/Toast/ToastContext'
-import { Dropdown } from '@/shared/Dropdown'
+import type { AnyFieldApi } from '@tanstack/react-form'
 
 /** fields error */
 const FieldInfo = ({ field }: { field: AnyFieldApi }) => {
@@ -28,50 +22,22 @@ const FieldInfo = ({ field }: { field: AnyFieldApi }) => {
 const defaultRegisterUser: {
   firstName: string
   lastName: string
-  username: string
-  reagion: string
-  email: string
   password: string
 } = {
   firstName: '',
   lastName: '',
-  username: '',
-  reagion: 'India',
-  email: '',
   password: '',
 }
 
 export const SignupPage = () => {
+  const navigate = useNavigate()
   const toast = useContext(ToastContext)
   if (!toast) {
     throw new Error('SigninPage must be used within a ToastProvider')
   }
-  const { showToast } = toast
 
-  const [selectedId, setSelectedId] = useState<string | undefined>()
-  const groups = [
-    {
-      group: 'Fruits',
-      items: [
-        { id: '1', label: 'Apple' },
-        { id: '2', label: 'Banana' },
-      ],
-    },
-    {
-      group: 'Vegetables',
-      items: [
-        { id: '3', label: 'Carrot' },
-        { id: '4', label: 'Broccoli' },
-      ],
-    },
-    {
-      group: 'Seafood',
-      items: [
-        { id: '5', label: 'Salmon' },
-        { id: '6', label: 'Tuna' },
-      ],
-    },
-  ]
+  const { showToast } = toast
+  const emailAddress = localStorage && localStorage.getItem('userEmail')
 
   const form = useForm({
     defaultValues: defaultRegisterUser,
@@ -81,6 +47,7 @@ export const SignupPage = () => {
         title: 'Successfully registered',
         description: JSON.stringify(value),
       })
+      navigate(paths.finduser)
     },
   })
 
@@ -96,20 +63,29 @@ export const SignupPage = () => {
             form.handleSubmit()
           }}
         >
+          <div className="app_auth_input_extra">
+            <em>Verified Email:</em>
+            {emailAddress && (
+              <p>
+                {emailAddress}
+                <img src={verify} alt={emailAddress} />
+              </p>
+            )}
+          </div>
           <div className="app_form_input_row">
             <div className="app_form_input">
               <form.Field
                 name="firstName"
                 validators={{
-                  onSubmit: ({ value }) => {
-                    return !value ? 'Please enter a first name' : null
-                  },
+                  onChange: ({ value }) =>
+                    !value ? 'Please enter a first name' : null,
                 }}
                 children={field => {
                   return (
                     <>
                       <label htmlFor={field.name}>First Name:</label>
                       <input
+                        type="text"
                         id={field.name}
                         name={field.name}
                         value={field.state.value}
@@ -126,15 +102,15 @@ export const SignupPage = () => {
               <form.Field
                 name="lastName"
                 validators={{
-                  onSubmit: ({ value }) => {
-                    return !value ? 'Please enter a last name' : null
-                  },
+                  onChange: ({ value }) =>
+                    !value ? 'Please enter a last name' : null,
                 }}
                 children={field => {
                   return (
                     <>
                       <label htmlFor={field.name}>Last Name:</label>
                       <input
+                        type="text"
                         id={field.name}
                         name={field.name}
                         value={field.state.value}
@@ -150,106 +126,66 @@ export const SignupPage = () => {
           </div>
           <div className="app_form_input">
             <form.Field
-              name="username"
-              validators={{
-                onSubmit: ({ value }) => {
-                  return !value ? 'Please enter a username' : null
-                },
-              }}
-              children={field => {
-                return (
-                  <>
-                    <label htmlFor={field.name}>Username:</label>
-                    <input
-                      id={field.name}
-                      name={field.name}
-                      value={field.state.value}
-                      onBlur={field.handleBlur}
-                      onChange={e => field.handleChange(e.target.value)}
-                    />
-                    <FieldInfo field={field} />
-                    <p>
-                      Username may only contain alphanumeric characters or
-                      single hyphens, and cannot begin or end with a hyphen.
-                    </p>
-                  </>
-                )
-              }}
-            />
-          </div>
-          <div className="app_form_input">
-            <form.Field
-              name="email"
-              validators={{
-                onSubmit: ({ value }) => {
-                  return !value ? 'Please enter a valid email address' : null
-                },
-              }}
-              children={field => {
-                return (
-                  <>
-                    <label htmlFor={field.name}>Email:</label>
-                    <input
-                      type="email"
-                      id={field.name}
-                      name={field.name}
-                      value={field.state.value}
-                      onBlur={field.handleBlur}
-                      onChange={e => field.handleChange(e.target.value)}
-                      autoComplete="email"
-                    />
-                    <FieldInfo field={field} />
-                  </>
-                )
-              }}
-            />
-          </div>
-          <div className="app_form_input">
-            <form.Field
               name="password"
               validators={{
-                onSubmit: ({ value }) => {
-                  return !value ? 'Please enter a valid password' : null
+                onChange: ({ value }) => {
+                  const errors = []
+                  if (value.length < 8)
+                    errors.push('Minimum 8 characters required')
+                  if (!/[A-Z]/.test(value))
+                    errors.push('At least 1 uppercase letter required')
+                  if (!/[a-z]/.test(value))
+                    errors.push('At least 1 lowercase letter required')
+                  if (!/[0-9]/.test(value))
+                    errors.push('At least 1 number required')
+                  if (!/[!@#$%^&*(),.?":{}|<>]/.test(value))
+                    errors.push('At least 1 special character required')
+                  return errors.length ? errors.join(', ') : null
                 },
               }}
-              children={field => (
-                <>
-                  <label htmlFor={field.name}>Password:</label>
-                  <input
-                    type="password"
-                    id={field.name}
-                    name={field.name}
-                    value={field.state.value}
-                    onBlur={field.handleBlur}
-                    onChange={e => field.handleChange(e.target.value)}
-                    autoComplete="password"
-                  />
-                  <FieldInfo field={field} />
-                  <p>
-                    Password should be at least 15 characters OR at least 8
-                    characters including a number and a lowercase letter.
-                  </p>
-                </>
-              )}
-            />
-          </div>
-          <div className="app_form_input">
-            <form.Field
-              name="reagion"
-              validators={{
-                onSubmit: ({ value }) => {
-                  return !value ? 'Please enter a reagion' : null
-                },
-              }}
-              children={() => {
+              children={field => {
+                const password = field.state.value
+                const rules = [
+                  {
+                    label: 'Minimum 8 characters',
+                    valid: password.length >= 8,
+                  },
+                  {
+                    label: 'At least 1 uppercase letter',
+                    valid: /[A-Z]/.test(password),
+                  },
+                  {
+                    label: 'At least 1 lowercase letter',
+                    valid: /[a-z]/.test(password),
+                  },
+                  { label: 'At least 1 number', valid: /[0-9]/.test(password) },
+                  {
+                    label: 'At least 1 special character',
+                    valid: /[!@#$%^&*(),.?":{}|<>]/.test(password),
+                  },
+                ]
                 return (
                   <>
-                    <label>Country/Region:</label>
-                    <Dropdown
-                      groups={groups}
-                      selectedId={selectedId}
-                      onSelect={item => setSelectedId(item.id)}
+                    <label htmlFor={field.name}>Password:</label>
+                    <input
+                      type="password"
+                      id={field.name}
+                      name={field.name}
+                      value={password}
+                      onBlur={field.handleBlur}
+                      onChange={e => field.handleChange(e.target.value)}
+                      autoComplete="password"
                     />
+                    <div className="app_password_validation">
+                      {rules.map((rule, i) => (
+                        <p key={i} className={rule.valid ? 'valid' : 'invalid'}>
+                          <CircleTick
+                            color={rule.valid ? '#3a922d' : '#e4e4e4'}
+                          />
+                          {rule.label}
+                        </p>
+                      ))}
+                    </div>
                   </>
                 )
               }}
@@ -264,11 +200,6 @@ export const SignupPage = () => {
                 </button>
               )}
             />
-          </div>
-          <div className="app_register_link">
-            <p>
-              Already have an account? <Link to={paths.login}>Login now</Link>
-            </p>
           </div>
         </form>
       </div>
