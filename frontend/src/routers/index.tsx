@@ -7,6 +7,7 @@ import { ErrorPage } from '@/pages/ErrorPage'
 import { SigninPage } from '@/pages/auth/SigninPage'
 import { SignupPage } from '@/pages/auth/SignupPage'
 import { VerifiedEmailPage } from '@/pages/auth/VerifiedEmailPage'
+import { CountrySelection } from '@/pages/auth/CountrySelection'
 import { ForgotPage } from '@/pages/ForgotPage'
 import { DashboardPage } from '@/pages/DashboardPage'
 
@@ -20,6 +21,7 @@ const routes = createBrowserRouter([
       { index: true, element: <SigninPage /> },
       { path: paths.register, element: <SignupPage /> },
       { path: paths.finduser, element: <VerifiedEmailPage /> },
+      { path: paths.selCountry, element: <CountrySelection /> },
       { path: paths.forgot, element: <ForgotPage /> },
     ],
   },

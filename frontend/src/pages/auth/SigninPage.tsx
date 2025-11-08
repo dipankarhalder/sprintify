@@ -1,31 +1,12 @@
-/** node modules */
 import { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from '@tanstack/react-form'
-
-/** config */
 import { paths } from '@/config/paths'
-
-/** type */
-import type { AnyFieldApi } from '@tanstack/react-form'
-
-/** components */
 import { AuthFooter } from '@/components/auth/AuthFooter'
 import { SocialAuth } from '@/components/auth/SocialAuth'
 import { ToastContext } from '@/shared/Toast/ToastContext'
+import { FieldInfo } from '@/utils/fieldValidator'
 
-/** fields error */
-const FieldInfo = ({ field }: { field: AnyFieldApi }) => {
-  const { isTouched, isValid, isValidating, errors } = field.state.meta
-  return (
-    <>
-      {isTouched && !isValid && <em>{errors.join(', ')}</em>}
-      {isValidating && 'Validating...'}
-    </>
-  )
-}
-
-/** user default info */
 const defaultLoginUser: {
   email: string
   password: string
@@ -48,22 +29,18 @@ export const SigninPage = () => {
     onSubmit: async ({ value }) => {
       const { email, password } = value
 
-      // STEP 1: Handle first submission (email check)
       if (!isVerified) {
         if (email === 'dipankar@gmail.com') {
-          // valid email — show password field
           localStorage.removeItem('userEmail')
           setIsVerified(true)
           return
         } else {
-          // any other email — redirect to register page
           localStorage.setItem('userEmail', email)
           navigate(paths.register)
           return
         }
       }
 
-      // STEP 2: Handle actual login when verified
       if (isVerified) {
         if (!password) {
           showToast({
@@ -103,7 +80,7 @@ export const SigninPage = () => {
               name="email"
               validators={{
                 onSubmit: ({ value }) => {
-                  return !value ? 'Please enter a valid email address' : null
+                  return !value ? 'Please enter your email address' : null
                 },
               }}
               children={field => {
@@ -123,6 +100,10 @@ export const SigninPage = () => {
                       disabled={isVerified}
                     />
                     <FieldInfo field={field} />
+                    <p>
+                      You may use either your personal or official email address
+                      to sign in or register a new uesr.
+                    </p>
                   </>
                 )
               }}
@@ -173,12 +154,6 @@ export const SigninPage = () => {
             />
           </div>
           <SocialAuth />
-          <div className="app_register_link">
-            <p>
-              New to Sprintify?{' '}
-              <Link to={paths.register}>Create an account</Link>
-            </p>
-          </div>
         </form>
         <AuthFooter />
       </div>

@@ -122,6 +122,12 @@
                   & > img {
                     width: 20px;
                   }
+
+                  & > span {
+                    color: $gray-300;
+                    font-size: 12px;
+                    margin-left: 16px;
+                  }
                 }
               }
 
@@ -180,6 +186,40 @@
                   color: $red-900;
                   margin-bottom: 0px;
                   line-height: normal;
+                }
+
+                .app_sugg_username_list {
+                  display: flex;
+                  flex-direction: column;
+                  width: 100%;
+                  margin-top: 18px;
+                  margin-bottom: 10px;
+
+                  & > p {
+                    text-align: left;
+                    font-family: $font;
+                    font-weight: 500;
+                    font-size: 12px;
+                    margin-top: 4px;
+                    color: $gray-300;
+                    margin-bottom: 6px;
+                    line-height: normal;
+                  }
+
+                  & > ul {
+                    gap: 6px;
+                    display: flex;
+                    width: 100%;
+
+                    & > li {
+                      color: $green-900;
+                      font-size: 12px;
+                      padding-right: 16px;
+                      font-weight: 500;
+                      border-radius: 40px;
+                      text-decoration: underline;
+                    }
+                  }
                 }
 
                 .app_password_validation {
