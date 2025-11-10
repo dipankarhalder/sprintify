@@ -1,10 +1,5 @@
-/** node modules */
 import { Outlet, Navigate } from 'react-router-dom'
-
-/** config */
 import { paths } from '@/config/paths'
-
-/** components */
 import { Sidebar } from '@/components/main/Sidebar'
 
 export const AdminLayout = () => {
