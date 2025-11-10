@@ -49,7 +49,7 @@ export const CountrySelection = () => {
       <h1>Choose your country</h1>
       <p>
         You're almost there! <br />
-        Let's finish setting up your account
+        Let's complete the final step
       </p>
       <div className="app_auth_form">
         <form

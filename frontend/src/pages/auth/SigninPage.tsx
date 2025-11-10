@@ -65,8 +65,7 @@ export const SigninPage = () => {
 
   return (
     <div className="app_auth_inside_cover">
-      <h1>Welcome Back!</h1>
-      <p>Log in to continue</p>
+      <p>Please sign in to continue your session</p>
       <div className="app_auth_form">
         <form
           onSubmit={e => {

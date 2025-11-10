@@ -34,10 +34,7 @@ export const VerifiedEmailPage = () => {
   return (
     <div className="app_auth_inside_cover">
       <h1>Choose a username</h1>
-      <p>
-        You're almost there! <br />
-        Let's finish setting up your account
-      </p>
+      <p>Let's finish setting up your account</p>
       <div className="app_auth_form">
         <form
           onSubmit={e => {
