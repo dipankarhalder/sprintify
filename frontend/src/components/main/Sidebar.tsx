@@ -1,7 +1,5 @@
-/** node modules */
 // import { useState } from 'react'
-
-/** components */
+import { Link } from 'react-router-dom'
 import { ShortLogo } from '@/components/main/ShortLogo'
 // import { Dropdown } from '@/shared/Dropdown'
 
@@ -11,14 +9,13 @@ import {
   Erp,
   User,
   Dashboard,
-  Folder,
   Employee,
   Vendors,
   Reports,
-  Timesheets,
+  Settings,
+  Notifications,
 } from '@/icons'
 
-/** images */
 import image1 from '/1.png'
 import image2 from '/2.png'
 import image3 from '/3.png'
@@ -37,21 +34,80 @@ export const Sidebar = () => {
   //   { id: '2', label: 'projectpath.com' },
   // ]
 
-  const mainProducts = [
-    { id: 1, icon: <Project />, name: 'Project Management' },
-    { id: 2, icon: <Erp />, name: 'Enterprise Resource' },
-    { id: 3, icon: <User />, name: 'Human Resource' },
-    { id: 4, icon: <Project />, name: 'Billing Items' },
+  const sideMenu = [
+    { id: 1, icon: <Dashboard />, name: 'Dashboard', path: '/' },
+    { id: 2, icon: <Notifications />, name: 'Notification', path: '/' },
+    { id: 3, icon: <Settings />, name: 'Settings', path: '/' },
   ]
 
   const mainMenu = [
-    { id: 1, label: 'Dashboard', icon: <Dashboard /> },
-    { id: 3, label: 'Tasks Board', icon: <Folder /> },
-    { id: 4, label: 'Employee', icon: <Employee /> },
-    { id: 5, label: 'Vendors', icon: <Vendors /> },
-    { id: 6, label: 'Reports', icon: <Reports /> },
-    { id: 7, label: 'Timesheet', icon: <Timesheets /> },
-    { id: 8, label: 'Company Profile', icon: <User /> },
+    {
+      id: 1,
+      label: 'Main Menu',
+      icon: <Dashboard />,
+      children: [{ id: 1, label: 'Dashboard', path: '/' }],
+    },
+    {
+      id: 2,
+      label: 'Manage Projects',
+      icon: <Project />,
+      children: [
+        { id: 1, label: 'Tasks Board', path: '/' },
+        { id: 2, label: 'Teams', path: '/' },
+        { id: 3, label: 'Assets', path: '/' },
+        { id: 4, label: 'Reports', path: '/' },
+        { id: 5, label: 'Schedules', path: '/' },
+        { id: 6, label: 'Clients', path: '/' },
+        { id: 7, label: 'Invoices', path: '/' },
+      ],
+    },
+    {
+      id: 3,
+      label: 'Manage Products',
+      icon: <Erp />,
+      children: [
+        { id: 1, label: 'Products', path: '/' },
+        { id: 2, label: 'Trackings', path: '/' },
+        { id: 3, label: 'Returns', path: '/' },
+        { id: 4, label: 'Billings', path: '/' },
+        { id: 5, label: 'Vendors', path: '/' },
+      ],
+    },
+    {
+      id: 4,
+      label: 'Manage Resources',
+      icon: <Employee />,
+      children: [
+        { id: 1, label: 'Resources List', path: '/' },
+        { id: 2, label: 'Teams', path: '/' },
+        { id: 3, label: 'Assets', path: '/' },
+        { id: 4, label: 'Reports', path: '/' },
+        { id: 5, label: 'Schedules', path: '/' },
+      ],
+    },
+    {
+      id: 5,
+      label: 'Manage Customers',
+      icon: <Vendors />,
+      children: [
+        { id: 1, label: 'Contact', path: '/' },
+        { id: 2, label: 'Companies', path: '/' },
+        { id: 3, label: 'Deals', path: '/' },
+        { id: 4, label: 'Analytics', path: '/' },
+        { id: 5, label: 'Activities', path: '/' },
+      ],
+    },
+    {
+      id: 6,
+      label: 'System Options',
+      icon: <Reports />,
+      children: [
+        { id: 1, label: 'Notification', path: '/' },
+        { id: 2, label: 'Settings', path: '/' },
+        { id: 3, label: 'Subscription Plans', path: '/' },
+      ],
+    },
+    { id: 7, label: 'Company Profile', icon: <User />, path: '/' },
   ]
 
   const assigneeUser = [
@@ -75,7 +131,7 @@ export const Sidebar = () => {
         </div>
         <div className="app_product_links">
           <ul>
-            {mainProducts.map(item => (
+            {sideMenu.map(item => (
               <li
                 key={item.id}
                 className={item.id === 1 ? 'app_active_link' : ''}
@@ -102,7 +158,17 @@ export const Sidebar = () => {
           <ul>
             {mainMenu.map(item => (
               <li key={item.id}>
-                {item.icon} {item.label}
+                <p>
+                  {item.icon} {item.label}
+                </p>
+                <ul>
+                  {item.children &&
+                    item.children.map(inItems => (
+                      <li key={inItems.id}>
+                        <Link to="/">{inItems.label}</Link>
+                      </li>
+                    ))}
+                </ul>
               </li>
             ))}
           </ul>
