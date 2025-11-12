@@ -31,7 +31,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-bottom: 2.5rem;
+        margin-bottom: 3rem;
 
         & > svg {
           width: 34px;
@@ -142,7 +142,7 @@
   .app_sidebar_content {
     display: flex;
     width: 100%;
-    padding: 20px 18px;
+    padding: 20px 15px;
     flex-direction: column;
     border-right: 1px solid $border;
     gap: 14px;
@@ -191,20 +191,42 @@
                 align-items: center;
                 width: 100%;
                 gap: 9px;
-                padding: 6px 14px 6px 0;
+                padding: 7px 12px;
                 font-weight: 500;
                 font-size: 14px;
                 color: $black;
                 border-radius: 6px;
+                position: relative;
 
                 & > svg {
                   width: 20px;
                   height: 20px;
                 }
+
+                & > span {
+                  top: 8px;
+                  right: 10px;
+                  position: absolute;
+                  width: 20px;
+                  height: 20px;
+                  background: color.adjust($red-900, $lightness: -7%);
+                  border-radius: 50%;
+                  font-size: 10px;
+                  font-weight: 600;
+                  color: $white;
+                  line-height: 20px;
+                  text-align: center;
+                }
               }
 
-              &:hover a {
+              &:hover a,
+              &.activeLink a {
                 background: color.adjust($gray-100, $lightness: 2%);
+
+                & > svg > path,
+                & > svg > g > path {
+                  stroke: $btnblue;
+                }
               }
             }
           }
