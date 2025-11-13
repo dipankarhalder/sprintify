@@ -48,6 +48,28 @@ export const Cross = () => (
     />
   </svg>
 )
+export const Close = () => (
+  <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none">
+    <path
+      d="M18 6L6 18M6 6L18 18"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+)
+export const Diamond = () => (
+  <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none">
+    <path
+      d="M2.49954 9H21.4995M9.99954 3L7.99954 9L11.9995 20.5L15.9995 9L13.9995 3M12.6141 20.2625L21.5727 9.51215C21.7246 9.32995 21.8005 9.23885 21.8295 9.13717C21.8551 9.04751 21.8551 8.95249 21.8295 8.86283C21.8005 8.76114 21.7246 8.67005 21.5727 8.48785L17.2394 3.28785C17.1512 3.18204 17.1072 3.12914 17.0531 3.09111C17.0052 3.05741 16.9518 3.03238 16.8953 3.01717C16.8314 3 16.7626 3 16.6248 3H7.37424C7.2365 3 7.16764 3 7.10382 3.01717C7.04728 3.03238 6.99385 3.05741 6.94596 3.09111C6.89192 3.12914 6.84783 3.18204 6.75966 3.28785L2.42633 8.48785C2.2745 8.67004 2.19858 8.76114 2.16957 8.86283C2.144 8.95249 2.144 9.04751 2.16957 9.13716C2.19858 9.23885 2.2745 9.32995 2.42633 9.51215L11.385 20.2625C11.596 20.5158 11.7015 20.6424 11.8279 20.6886C11.9387 20.7291 12.0603 20.7291 12.1712 20.6886C12.2975 20.6424 12.4031 20.5158 12.6141 20.2625Z"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+)
 export const Search = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
     <path
@@ -58,7 +80,6 @@ export const Search = () => (
       strokeLinejoin="round"
     />
     <path
-      opacity="0.4"
       d="M22 22L20 20"
       stroke="#292D32"
       strokeWidth="1.7"
@@ -136,7 +157,6 @@ export const Erp = () => (
 export const User = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
     <path
-      opacity="0.4"
       d="M12.1202 12.78C12.0502 12.77 11.9602 12.77 11.8802 12.78C10.1202 12.72 8.72021 11.28 8.72021 9.50998C8.72021 7.69998 10.1802 6.22998 12.0002 6.22998C13.8102 6.22998 15.2802 7.69998 15.2802 9.50998C15.2702 11.28 13.8802 12.72 12.1202 12.78Z"
       stroke="#292D32"
       strokeWidth="1.7"
@@ -163,7 +183,6 @@ export const User = () => (
 export const Teams = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
     <path
-      opacity="0.4"
       d="M11.4599 13.7299C13.0118 13.7299 14.2699 12.4718 14.2699 10.9199C14.2699 9.36794 13.0118 8.10986 11.4599 8.10986C9.90798 8.10986 8.6499 9.36794 8.6499 10.9199C8.6499 12.4718 9.90798 13.7299 11.4599 13.7299Z"
       stroke="#292D32"
       strokeWidth="1.7"
@@ -171,7 +190,6 @@ export const Teams = () => (
       strokeLinejoin="round"
     />
     <path
-      opacity="0.4"
       d="M16.65 20.1998C16.65 17.8698 14.33 15.9697 11.46 15.9697C8.59002 15.9697 6.27002 17.8598 6.27002 20.1998"
       stroke="#292D32"
       strokeWidth="1.7"
@@ -214,7 +232,6 @@ export const Teams = () => (
 export const Members = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
     <path
-      opacity="0.4"
       d="M17.9976 7.16C17.9376 7.15 17.8676 7.15 17.8076 7.16C16.4276 7.11 15.3276 5.98 15.3276 4.58C15.3276 3.15 16.4776 2 17.9076 2C19.3376 2 20.4876 3.16 20.4876 4.58C20.4776 5.98 19.3776 7.11 17.9976 7.16Z"
       stroke="#292D32"
       strokeWidth="1.7"
@@ -222,7 +239,6 @@ export const Members = () => (
       strokeLinejoin="round"
     />
     <path
-      opacity="0.4"
       d="M16.9675 14.4402C18.3375 14.6702 19.8475 14.4302 20.9075 13.7202C22.3175 12.7802 22.3175 11.2402 20.9075 10.3002C19.8375 9.59016 18.3075 9.35016 16.9375 9.59016"
       stroke="#292D32"
       strokeWidth="1.7"
@@ -230,7 +246,6 @@ export const Members = () => (
       strokeLinejoin="round"
     />
     <path
-      opacity="0.4"
       d="M5.96754 7.16C6.02754 7.15 6.09754 7.15 6.15754 7.16C7.53754 7.11 8.63754 5.98 8.63754 4.58C8.63754 3.15 7.48754 2 6.05754 2C4.62754 2 3.47754 3.16 3.47754 4.58C3.48754 5.98 4.58754 7.11 5.96754 7.16Z"
       stroke="#292D32"
       strokeWidth="1.7"
@@ -238,7 +253,6 @@ export const Members = () => (
       strokeLinejoin="round"
     />
     <path
-      opacity="0.4"
       d="M6.9975 14.4402C5.6275 14.6702 4.1175 14.4302 3.0575 13.7202C1.6475 12.7802 1.6475 11.2402 3.0575 10.3002C4.1275 9.59016 5.6575 9.35016 7.0275 9.59016"
       stroke="#292D32"
       strokeWidth="1.7"
@@ -271,7 +285,6 @@ export const Clients = () => (
       strokeLinejoin="round"
     />
     <path
-      opacity="0.4"
       d="M3.41016 22C3.41016 18.13 7.26015 15 12.0002 15C12.9602 15 13.8902 15.13 14.7602 15.37"
       stroke="#292D32"
       strokeWidth="1.7"
@@ -314,7 +327,6 @@ export const Invoice = () => (
       strokeLinejoin="round"
     />
     <path
-      opacity="0.4"
       d="M9 13.0098H12"
       stroke="#292D32"
       strokeWidth="1.7"
@@ -322,7 +334,6 @@ export const Invoice = () => (
       strokeLinejoin="round"
     />
     <path
-      opacity="0.4"
       d="M9 9.00977H12"
       stroke="#292D32"
       strokeWidth="1.7"
@@ -330,7 +341,6 @@ export const Invoice = () => (
       strokeLinejoin="round"
     />
     <path
-      opacity="0.4"
       d="M5.99609 13H6.00508"
       stroke="#292D32"
       strokeWidth="1.7"
@@ -338,7 +348,6 @@ export const Invoice = () => (
       strokeLinejoin="round"
     />
     <path
-      opacity="0.4"
       d="M5.99548 9H6.00447"
       stroke="#292D32"
       strokeWidth="1.7"
@@ -370,7 +379,7 @@ export const Products = () => (
       strokeLinecap="round"
       strokeLinejoin="round"
     />
-    <g opacity="0.4">
+    <g>
       <path
         d="M19.2 21.4C20.9673 21.4 22.4 19.9673 22.4 18.2C22.4 16.4327 20.9673 15 19.2 15C17.4327 15 16 16.4327 16 18.2C16 19.9673 17.4327 21.4 19.2 21.4Z"
         stroke="#292D32"
@@ -398,7 +407,6 @@ export const Billings = () => (
       strokeLinejoin="round"
     />
     <path
-      opacity="0.4"
       d="M8.09607 11H8.10505"
       stroke="#292D32"
       strokeWidth="1.7"
@@ -406,7 +414,6 @@ export const Billings = () => (
       strokeLinejoin="round"
     />
     <path
-      opacity="0.4"
       d="M10.8984 11H16.3984"
       stroke="#292D32"
       strokeWidth="1.7"
@@ -414,7 +421,6 @@ export const Billings = () => (
       strokeLinejoin="round"
     />
     <path
-      opacity="0.4"
       d="M8.09607 7H8.10505"
       stroke="#292D32"
       strokeWidth="1.7"
@@ -422,7 +428,6 @@ export const Billings = () => (
       strokeLinejoin="round"
     />
     <path
-      opacity="0.4"
       d="M10.8984 7H16.3984"
       stroke="#292D32"
       strokeWidth="1.7"
@@ -434,7 +439,6 @@ export const Billings = () => (
 export const Tracking = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
     <path
-      opacity="0.4"
       d="M15 2V12C15 13.1 14.1 14 13 14H2V7.62C2.73 8.49 3.85003 9.03 5.09003 9C6.10003 8.98 7.01 8.59 7.69 7.94C8 7.68 8.26002 7.34999 8.46002 6.98999C8.82002 6.37999 9.02 5.65997 9 4.90997C8.97 3.73997 8.45001 2.71 7.64001 2H15Z"
       stroke="#292D32"
       strokeWidth="1.7"
@@ -478,7 +482,6 @@ export const Tracking = () => (
       strokeLinejoin="round"
     />
     <path
-      opacity="0.4"
       d="M3.44043 5.02979L4.45044 5.98975L6.54041 3.96973"
       stroke="#292D32"
       strokeWidth="1.7"
@@ -490,7 +493,6 @@ export const Tracking = () => (
 export const Rreturn = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
     <path
-      opacity="0.4"
       d="M22 15C22 18.87 18.87 22 15 22L16.05 20.25"
       stroke="#292D32"
       strokeWidth="1.7"
@@ -498,7 +500,6 @@ export const Rreturn = () => (
       strokeLinejoin="round"
     />
     <path
-      opacity="0.4"
       d="M2 9C2 5.13 5.13 2 9 2L7.95 3.75"
       stroke="#292D32"
       strokeWidth="1.7"
@@ -576,7 +577,6 @@ export const Reports = () => (
       strokeLinejoin="round"
     />
     <path
-      opacity="0.4"
       d="M7 11H13"
       stroke="#292D32"
       strokeWidth="1.7"
@@ -585,7 +585,6 @@ export const Reports = () => (
       strokeLinejoin="round"
     />
     <path
-      opacity="0.4"
       d="M7 16H9.62"
       stroke="#292D32"
       strokeWidth="1.7"
@@ -602,7 +601,6 @@ export const Reports = () => (
       strokeLinejoin="round"
     />
     <path
-      opacity="0.4"
       d="M17.75 20.25C17.75 18.87 18.87 17.75 20.25 17.75C18.87 17.75 17.75 16.63 17.75 15.25C17.75 16.63 16.63 17.75 15.25 17.75C16.63 17.75 17.75 18.87 17.75 20.25Z"
       stroke="#292D32"
       strokeWidth="1.7"
@@ -621,7 +619,6 @@ export const Assets = () => (
       strokeLinejoin="round"
     />
     <path
-      opacity="0.4"
       d="M22 19.9V18.1C22 16.6 21.36 16 19.77 16H15.73C14.14 16 13.5 16.6 13.5 18.1V19.9C13.5 21.4 14.14 22 15.73 22H19.77C21.36 22 22 21.4 22 19.9Z"
       stroke="#292D32"
       strokeWidth="1.7"
@@ -636,7 +633,6 @@ export const Assets = () => (
       strokeLinejoin="round"
     />
     <path
-      opacity="0.4"
       d="M10.5 4.1V5.9C10.5 7.4 9.86 8 8.27 8H4.23C2.64 8 2 7.4 2 5.9V4.1C2 2.6 2.64 2 4.23 2H8.27C9.86 2 10.5 2.6 10.5 4.1Z"
       stroke="#292D32"
       strokeWidth="1.7"
@@ -648,7 +644,6 @@ export const Assets = () => (
 export const Dashboard = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
     <path
-      opacity="0.34"
       d="M12 18V15"
       stroke="#292D32"
       strokeWidth="1.7"
@@ -673,7 +668,7 @@ export const Home = () => (
       strokeLinecap="round"
       strokeLinejoin="round"
     />
-    <g opacity="0.4">
+    <g>
       <path
         d="M16.5 11.5L12.3 15.7L10.7 13.3L7.5 16.5"
         stroke="#292D32"
@@ -694,7 +689,6 @@ export const Home = () => (
 export const Tasks = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
     <path
-      opacity="0.4"
       d="M9.31006 14.7002L10.8101 16.2002L14.8101 12.2002"
       stroke="#292D32"
       strokeWidth="1.7"
@@ -722,7 +716,6 @@ export const Tasks = () => (
 export const Settings = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
     <path
-      opacity="0.34"
       d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z"
       stroke="#292D32"
       strokeWidth="1.7"
@@ -750,7 +743,7 @@ export const Configr = () => (
       strokeLinecap="round"
       strokeLinejoin="round"
     />
-    <g opacity="0.4">
+    <g>
       <path
         d="M6 6.5H2"
         stroke="#292D32"
@@ -799,7 +792,6 @@ export const Configr = () => (
 export const Notifications = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
     <path
-      opacity="0.4"
       d="M12 6.43994V9.76994"
       stroke="#292D32"
       strokeWidth="1.7"
@@ -814,7 +806,6 @@ export const Notifications = () => (
       strokeLinecap="round"
     />
     <path
-      opacity="0.4"
       d="M15.3299 18.8198C15.3299 20.6498 13.8299 22.1498 11.9999 22.1498C11.0899 22.1498 10.2499 21.7698 9.64992 21.1698C9.04992 20.5698 8.66992 19.7298 8.66992 18.8198"
       stroke="#292D32"
       strokeWidth="1.7"
@@ -840,7 +831,6 @@ export const Notify = () => (
       strokeLinejoin="round"
     />
     <path
-      opacity="0.4"
       d="M15.02 19.0601C15.02 20.7101 13.67 22.0601 12.02 22.0601C11.2 22.0601 10.44 21.7201 9.90002 21.1801C9.36002 20.6401 9.02002 19.8801 9.02002 19.0601"
       stroke="#292D32"
       strokeWidth="1.7"
@@ -858,7 +848,6 @@ export const Subscription = () => (
       strokeLinejoin="round"
     />
     <path
-      opacity="0.4"
       d="M9 15L15 9"
       stroke="#292D32"
       strokeWidth="1.7"
@@ -866,7 +855,6 @@ export const Subscription = () => (
       strokeLinejoin="round"
     />
     <path
-      opacity="0.4"
       d="M14.4945 14.5H14.5035"
       stroke="#292D32"
       strokeWidth="1.7"
@@ -874,7 +862,6 @@ export const Subscription = () => (
       strokeLinejoin="round"
     />
     <path
-      opacity="0.4"
       d="M9.49451 9.5H9.50349"
       stroke="#292D32"
       strokeWidth="1.7"
@@ -893,7 +880,6 @@ export const Anasysis = () => (
       strokeLinejoin="round"
     />
     <path
-      opacity="0.4"
       d="M1.96997 12.7001L7.96997 12.6801C8.71997 12.6801 9.55997 13.2501 9.83997 13.9501L10.98 16.8301C11.24 17.4801 11.65 17.4801 11.91 16.8301L14.2 11.0201C14.42 10.4601 14.83 10.4401 15.11 10.9701L16.15 12.9401C16.46 13.5301 17.26 14.0101 17.92 14.0101H21.98"
       stroke="#292D32"
       strokeWidth="1.7"
@@ -911,7 +897,6 @@ export const Phone = () => (
       strokeMiterlimit="10"
     />
     <path
-      opacity="0.4"
       d="M18.5 9C18.5 8.4 18.03 7.48 17.33 6.73C16.69 6.04 15.84 5.5 15 5.5"
       stroke="#292D32"
       strokeWidth="1.7"
@@ -919,7 +904,6 @@ export const Phone = () => (
       strokeLinejoin="round"
     />
     <path
-      opacity="0.4"
       d="M22 9C22 5.13 18.87 2 15 2"
       stroke="#292D32"
       strokeWidth="1.7"
@@ -947,7 +931,6 @@ export const Schedules = () => (
       strokeLinejoin="round"
     />
     <path
-      opacity="0.4"
       d="M3.5 9.08984H20.5"
       stroke="#292D32"
       strokeWidth="1.7"
@@ -980,7 +963,6 @@ export const Schedules = () => (
       strokeLinejoin="round"
     />
     <path
-      opacity="0.4"
       d="M11.9955 13.7002H12.0045"
       stroke="#292D32"
       strokeWidth="1.7"
@@ -988,7 +970,6 @@ export const Schedules = () => (
       strokeLinejoin="round"
     />
     <path
-      opacity="0.4"
       d="M8.29431 13.7002H8.30329"
       stroke="#292D32"
       strokeWidth="1.7"
@@ -996,7 +977,6 @@ export const Schedules = () => (
       strokeLinejoin="round"
     />
     <path
-      opacity="0.4"
       d="M8.29443 16.7002H8.30342"
       stroke="#292D32"
       strokeWidth="1.7"
@@ -1050,7 +1030,7 @@ export const Companies = () => (
       strokeLinecap="round"
       strokeLinejoin="round"
     />
-    <g opacity="0.4">
+    <g>
       <path
         d="M3.00977 11.2197V15.7097C3.00977 20.1997 4.80977 21.9997 9.29977 21.9997H14.6898C19.1798 21.9997 20.9798 20.1997 20.9798 15.7097V11.2197"
         stroke="#292D32"
@@ -1078,7 +1058,6 @@ export const Resource = () => (
       strokeLinejoin="round"
     />
     <path
-      opacity="0.4"
       d="M3.41016 22C3.41016 18.13 7.26018 15 12.0002 15"
       stroke="#292D32"
       strokeWidth="1.7"
@@ -1111,7 +1090,6 @@ export const Activity = () => (
       strokeLinejoin="round"
     />
     <path
-      opacity="0.4"
       d="M7.33008 14.4898L9.71008 11.3998C10.0501 10.9598 10.6801 10.8798 11.1201 11.2198L12.9501 12.6598C13.3901 12.9998 14.0201 12.9198 14.3601 12.4898L16.6701 9.50977"
       stroke="#292D32"
       strokeWidth="1.7"
@@ -1130,7 +1108,6 @@ export const Activity = () => (
 export const Deals = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
     <path
-      opacity="0.4"
       d="M22 11.1V6.9C22 3.4 20.6 2 17.1 2H12.9C9.4 2 8 3.4 8 6.9V8H11.1C14.6 8 16 9.4 16 12.9V16H17.1C20.6 16 22 14.6 22 11.1Z"
       stroke="#292D32"
       strokeWidth="1.7"
@@ -1156,7 +1133,6 @@ export const Deals = () => (
 export const Vendors = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
     <path
-      opacity="0.4"
       d="M21.01 11.2197V15.7097C21.01 20.1997 19.22 21.9998 14.72 21.9998H9.33002C8.75002 21.9998 8.21998 21.9698 7.72998 21.8998"
       stroke="#292D32"
       strokeWidth="1.7"
@@ -1164,7 +1140,6 @@ export const Vendors = () => (
       strokeLinejoin="round"
     />
     <path
-      opacity="0.4"
       d="M3.04004 15.5198V11.2197"
       stroke="#292D32"
       strokeWidth="1.7"
@@ -1201,7 +1176,6 @@ export const Vendors = () => (
       strokeLinejoin="round"
     />
     <path
-      opacity="0.4"
       d="M6.48975 18.98H3.50977"
       stroke="#292D32"
       strokeWidth="1.7"
