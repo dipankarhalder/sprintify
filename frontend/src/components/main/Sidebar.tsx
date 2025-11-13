@@ -1,11 +1,14 @@
+import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { ShortLogo } from '@/components/main/ShortLogo'
 import { sideMenu, sideBottomMenu, mainMenu } from '@/config/infoDatas'
 import { avatar } from '@/config/image'
-import { Logout } from '@/icons'
+import { Logout, Close, Diamond } from '@/icons'
 
 export const Sidebar = () => {
   const location = useLocation()
+  const [isClosed, setIsClosed] = useState(true)
+  const handleClose = () => setIsClosed(false)
 
   return (
     <div className="app_sidebar">
@@ -30,6 +33,19 @@ export const Sidebar = () => {
                 ))}
               </ul>
             </div>
+          </div>
+          <div className="app_project_selection_side">
+            <ul>
+              <li>
+                <span></span>
+              </li>
+              <li>
+                <span></span>
+              </li>
+              <li>
+                <span></span>
+              </li>
+            </ul>
           </div>
           <div className="app_sidebar_col_bottom">
             <div className="app_product_links">
@@ -97,6 +113,23 @@ export const Sidebar = () => {
             </div>
           </div>
         </div>
+        {isClosed && (
+          <div className="app_side_subscription">
+            <div className="app_sub_heading">
+              <Diamond />
+              <p>Premium plans</p>
+              <span className="app_sub_close" onClick={() => handleClose()}>
+                <Close />
+              </span>
+            </div>
+            <div className="app_sub_bodytext">
+              <p>Unlock exclusive features and enjoy an enhanced experience.</p>
+            </div>
+            <div className="app_sub_footer_btn">
+              <span>Subscribe today</span>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   )

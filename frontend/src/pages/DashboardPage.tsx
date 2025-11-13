@@ -1,5 +1,3 @@
-import React from 'react'
-
 export const DashboardPage = () => {
   return (
     <div className="app_box_full">
