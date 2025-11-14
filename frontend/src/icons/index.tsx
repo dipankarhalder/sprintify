@@ -164,7 +164,6 @@ export const User = () => (
       strokeLinejoin="round"
     />
     <path
-      opacity="0.34"
       d="M18.7398 19.3801C16.9598 21.0101 14.5998 22.0001 11.9998 22.0001C9.39977 22.0001 7.03977 21.0101 5.25977 19.3801C5.35977 18.4401 5.95977 17.5201 7.02977 16.8001C9.76977 14.9801 14.2498 14.9801 16.9698 16.8001C18.0398 17.5201 18.6398 18.4401 18.7398 19.3801Z"
       stroke="#292D32"
       strokeWidth="1.7"
@@ -769,7 +768,7 @@ export const Configr = () => (
       strokeLinecap="round"
       strokeLinejoin="round"
     />
-    <g opacity="0.4">
+    <g>
       <path
         d="M22 17.5H18"
         stroke="#292D32"

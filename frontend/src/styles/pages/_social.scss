@@ -1,0 +1,47 @@
+@use 'sass:color';
+@use '../core/color' as *;
+
+.app_social_login_register {
+  width: 100%;
+  margin-bottom: 20px;
+
+  & > ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+
+    & > li {
+      gap: 6px;
+      width: 33%;
+      display: flex;
+      flex-wrap: wrap;
+      cursor: pointer;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid color.adjust($border, $lightness: -20%);
+
+      & > svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      & > p {
+        color: $bodytext;
+        font-size: 13px;
+        font-weight: 500;
+      }
+
+      &:nth-child(2) {
+        & > svg {
+          width: 19px;
+          height: 19px;
+        }
+      }
+    }
+  }
+}

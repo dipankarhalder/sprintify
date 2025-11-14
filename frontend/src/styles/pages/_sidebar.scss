@@ -67,8 +67,8 @@
             & > span {
               width: 100%;
               height: 49px;
-              background: $gray-100;
               border-radius: 8px;
+              background: color.adjust($gray-100, $lightness: 18%);
             }
           }
         }
@@ -127,7 +127,7 @@
               left: 5px;
               top: 50%;
               transform: translateY(-50%) rotate(45deg);
-              background: $gray-600;
+              background: $gray-300;
             }
 
             & > p {
@@ -136,12 +136,12 @@
               border-radius: 8px;
               font-size: 14px;
               font-weight: 500;
-              background: $gray-600;
+              background: $gray-300;
             }
           }
 
           &:hover {
-            background: color.adjust($gray-100, $lightness: 2%);
+            background: color.adjust($gray-100, $lightness: 20%);
 
             & > svg {
               opacity: 1;
@@ -158,7 +158,7 @@
           }
 
           &.app_active_link {
-            background: color.adjust($gray-100, $lightness: 2%);
+            background: color.adjust($gray-100, $lightness: 20%);
 
             & > svg {
               opacity: 1;
@@ -174,10 +174,10 @@
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            background: color.adjust($red-100, $lightness: -6%);
+            background: color.adjust($red-100, $lightness: 28%);
 
             & > svg > path {
-              stroke: $red-900;
+              stroke: color.adjust($red-300, $lightness: -6%);
             }
           }
         }
@@ -186,13 +186,19 @@
 
     .app_sidebar_content {
       display: flex;
+      gap: 14px;
       width: 100%;
       padding: 0px;
       height: 100vh;
       flex-direction: column;
       border-right: 1px solid $border;
-      gap: 14px;
       overflow-y: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
 
       .app_select_project {
         position: sticky;
@@ -207,9 +213,15 @@
         & > span {
           width: 40px;
           height: 40px;
-          background: $gray-100;
+          background: #2a7b9b;
+          background: linear-gradient(
+            90deg,
+            rgba(42, 123, 155, 1) 0%,
+            rgba(87, 199, 133, 1) 50%,
+            rgba(237, 221, 83, 1) 100%
+          );
           border-radius: 10px;
-          border: 1px solid $border;
+          border: 1px solid color.adjust($border, $lightness: -10%);
         }
 
         .app_selected_project {
@@ -294,7 +306,7 @@
                     position: absolute;
                     width: 6px;
                     height: 6px;
-                    background: color.adjust($red-900, $lightness: -7%);
+                    background: color.adjust($red-300, $lightness: -7%);
                     border-radius: 50%;
                     color: $white;
                     text-align: center;
@@ -304,7 +316,7 @@
                 &:hover a,
                 &.activeLink a {
                   color: $btnblue;
-                  background: color.adjust($blue-100, $lightness: 7%);
+                  background: color.adjust($blue-100, $lightness: 28%);
 
                   & > svg > path,
                   & > svg > g > path {
@@ -347,83 +359,6 @@
         }
       }
     }
-
-    .app_side_subscription {
-      position: absolute;
-      bottom: 70px;
-      right: 10px;
-      width: calc(100% - 84px);
-      border-radius: 8px;
-      background: color.adjust($blue-100, $lightness: 8%);
-      border: 1px solid $btnblue;
-      display: flex;
-      flex-direction: column;
-      padding: 10px 14px;
-      gap: 8px;
-      box-shadow: $shadow-1;
-
-      .app_sub_heading {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-
-        & > svg {
-          width: 18px;
-          height: 18px;
-          color: $btnblue;
-        }
-
-        & > p {
-          font-size: 14px;
-          font-weight: 500;
-          color: $btnblue;
-        }
-
-        .app_sub_close {
-          width: 16px;
-          height: 16px;
-          position: absolute;
-          top: 6px;
-          right: 6px;
-          cursor: pointer;
-
-          & > svg {
-            width: 16px;
-            height: 16px;
-          }
-        }
-      }
-
-      .app_sub_bodytext {
-        width: 100%;
-
-        & > p {
-          font-size: 12px;
-          font-weight: 500;
-          color: $gray-300;
-          line-height: 16px;
-        }
-      }
-
-      .app_sub_footer_btn {
-        width: 100%;
-        display: flex;
-        margin-top: 10px;
-
-        span {
-          width: 100%;
-          font-size: 13px;
-          font-weight: 500;
-          color: $white;
-          padding: 6px 12px;
-          border-radius: 6px;
-          text-align: center;
-          background: $btnblue;
-          border: 1px solid $btnblue;
-        }
-      }
-    }
   }
 
   .app_upgrade_section {
@@ -455,13 +390,13 @@
       h2 {
         font-size: 14px;
         font-weight: 500;
-        color: $gray-600;
+        color: $black;
       }
 
       & > p {
         display: flex;
         align-items: center;
-        color: $gray-300;
+        color: color.adjust($gray-300, $lightness: 16%);
         font-size: 12px;
         font-weight: 500;
         line-height: 16px;
