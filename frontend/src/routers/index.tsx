@@ -12,7 +12,8 @@ import { ForgotPage } from '@/pages/auth/ForgotPage'
 
 import { DashboardPage } from '@/pages/main/DashboardPage'
 import { ReportsPage } from '@/pages/main/ReportsPage'
-import { VendorsPage } from '@/pages/main/VendorsPage'
+import { VendorsPage } from '@/pages/main/Vendors'
+import { VendorListPage } from '@/pages/main/Vendors/ListPage'
 
 /** routes path */
 const routes = createBrowserRouter([
@@ -34,7 +35,11 @@ const routes = createBrowserRouter([
     children: [
       { index: true, element: <DashboardPage /> },
       { path: paths.reports, element: <ReportsPage /> },
-      { path: paths.vendors, element: <VendorsPage /> },
+      {
+        path: paths.vendors,
+        element: <VendorsPage />,
+        children: [{ index: true, element: <VendorListPage /> }],
+      },
     ],
   },
 ])
