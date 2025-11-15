@@ -5,5 +5,5 @@ export const paths = {
   finduser: '/username',
   selCountry: '/select-country',
   forgot: '/forgot-password',
-  admin: '/admin',
+  admin: '/:username',
 }

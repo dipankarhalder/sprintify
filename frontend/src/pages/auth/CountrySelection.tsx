@@ -4,6 +4,7 @@ import { useForm } from '@tanstack/react-form'
 import { paths } from '@/config/paths'
 import { ToastContext } from '@/shared/Toast/ToastContext'
 import { Dropdown } from '@/shared/Dropdown'
+import { useAuthStore } from '@/store/authStore'
 
 /** user default info */
 const defaultRegisterUser: {
@@ -14,6 +15,8 @@ const defaultRegisterUser: {
 
 export const CountrySelection = () => {
   const navigate = useNavigate()
+  const { setUsername } = useAuthStore()
+
   const toast = useContext(ToastContext)
   if (!toast) {
     throw new Error('SigninPage must be used within a ToastProvider')
@@ -33,14 +36,27 @@ export const CountrySelection = () => {
   const form = useForm({
     defaultValues: defaultRegisterUser,
     onSubmit: async ({ value }) => {
+      const foundUsername = localStorage.getItem('authUser') || 'userNotFound'
+      if (foundUsername === 'userNotFound') {
+        setUsername(false)
+        showToast({
+          type: 'error',
+          title: 'User not found',
+          description: 'Please sign in again.',
+        })
+        return navigate(paths.login)
+      }
+
       localStorage.removeItem('userEmail')
       localStorage.setItem('authToken', 'authenticated')
+      setUsername(true)
       showToast({
         type: 'success',
         title: 'Successfully registered',
         description: JSON.stringify(value),
       })
-      navigate(paths.admin)
+
+      navigate(`/${foundUsername}`)
     },
   })
 
