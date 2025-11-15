@@ -1,29 +1,27 @@
+/** node modules */
 import { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useForm } from '@tanstack/react-form'
+
+/** configs */
 import { paths } from '@/config/paths'
+
+/** shared components */
 import { ToastContext } from '@/shared/Toast/ToastContext'
 import { Dropdown } from '@/shared/Dropdown'
+
+/** stores */
 import { useAuthStore } from '@/store/authStore'
 
 /** user default info */
-const defaultRegisterUser: {
+const defaultCountry: {
   reagion: string
 } = {
   reagion: 'India',
 }
 
 export const CountrySelection = () => {
-  const navigate = useNavigate()
-  const { setUsername } = useAuthStore()
-
-  const toast = useContext(ToastContext)
-  if (!toast) {
-    throw new Error('SigninPage must be used within a ToastProvider')
-  }
-  const { showToast } = toast
-
-  const [selectedId, setSelectedId] = useState<string | undefined>()
+  /** country list */
   const groups = [
     { id: '1', label: 'India' },
     { id: '2', label: 'Australia' },
@@ -33,12 +31,26 @@ export const CountrySelection = () => {
     { id: '6', label: 'Russia' },
   ]
 
+  /** states */
+  const [selectedId, setSelectedId] = useState<string | undefined>()
+
+  /** hooks */
+  const navigate = useNavigate()
+  const toast = useContext(ToastContext)
+  const { isUsername, removeUserEmail, setUserAuthentication } = useAuthStore()
+
+  /** check toast component loaded or not */
+  if (!toast) {
+    throw new Error('SigninPage must be used within a ToastProvider')
+  }
+  const { showToast } = toast
+
+  /** form method */
   const form = useForm({
-    defaultValues: defaultRegisterUser,
+    defaultValues: defaultCountry,
     onSubmit: async ({ value }) => {
-      const foundUsername = localStorage.getItem('authUser') || 'userNotFound'
-      if (foundUsername === 'userNotFound') {
-        setUsername(false)
+      /** verify the username exist or not */
+      if (isUsername === 'userNotFound') {
         showToast({
           type: 'error',
           title: 'User not found',
@@ -47,16 +59,15 @@ export const CountrySelection = () => {
         return navigate(paths.login)
       }
 
-      localStorage.removeItem('userEmail')
-      localStorage.setItem('authToken', 'authenticated')
-      setUsername(true)
+      removeUserEmail()
+      setUserAuthentication('authenticated')
       showToast({
         type: 'success',
-        title: 'Successfully registered',
+        title: 'Successfully registered the user',
         description: JSON.stringify(value),
       })
 
-      navigate(`/${foundUsername}`)
+      navigate(`/${isUsername}`)
     },
   })
 

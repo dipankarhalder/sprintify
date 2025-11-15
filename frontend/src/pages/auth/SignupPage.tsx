@@ -10,7 +10,7 @@ import { paths } from '@/config/paths'
 /** icons */
 import { CircleTick } from '@/icons'
 
-/** components */
+/** shared components */
 import { ToastContext } from '@/shared/Toast/ToastContext'
 
 /** utils functions */

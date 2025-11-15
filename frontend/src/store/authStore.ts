@@ -4,8 +4,9 @@ import { create } from 'zustand'
 /** types */
 interface AuthState {
   /** authenticated */
-  isAuthenticated: boolean
-  setUserAuthentication: (value: boolean, token: string) => void
+  isAuthenticated: string | null
+  setUserAuthentication: (token: string) => void
+  userLogout: () => void
 
   /** username */
   isUsername: string | null
@@ -20,10 +21,14 @@ interface AuthState {
 
 export const useAuthStore = create<AuthState>(set => ({
   /** authenticated */
-  isAuthenticated: false,
-  setUserAuthentication: (value, token) => {
+  isAuthenticated: localStorage.getItem('authToken') || null,
+  setUserAuthentication: token => {
     if (token) localStorage.setItem('authToken', token)
-    set({ isAuthenticated: value })
+    set({ isAuthenticated: token })
+  },
+  userLogout: () => {
+    localStorage.clear()
+    set({ isAuthenticated: null, isUsername: null, isUserEmail: null })
   },
 
   /** username */
