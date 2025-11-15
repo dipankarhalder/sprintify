@@ -11,14 +11,11 @@ import { useAuthStore } from '@/store/authStore'
 import { Sidebar } from '@/components/main/Sidebar'
 
 export const AdminLayout = () => {
-  /** localstorage */
-  const authTokenize = localStorage.getItem('authToken')
-
-  /** store methods */
-  const { isUsername } = useAuthStore()
+  /** hooks */
+  const { isAuthenticated, isUsername } = useAuthStore()
 
   /** check the token and username available or not */
-  if (!authTokenize || !isUsername) {
+  if (!isAuthenticated || !isUsername) {
     return <Navigate to={paths.login} replace />
   }
 

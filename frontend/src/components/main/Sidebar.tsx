@@ -12,12 +12,16 @@ import { avatar } from '@/config/image'
 /** components */
 import { ShortLogo } from '@/components/main/ShortLogo'
 
+/** stores */
+import { useAuthStore } from '@/store/authStore'
+
 export const Sidebar = () => {
   /** states */
   const [isClosed, setIsClosed] = useState(true)
 
   /** hooks */
   const location = useLocation()
+  const { userLogout } = useAuthStore()
 
   /** methods */
   const handleClose = () => setIsClosed(false)
@@ -70,7 +74,7 @@ export const Sidebar = () => {
                     </span>
                   </li>
                 ))}
-                <li className="app_logout_btn">
+                <li className="app_logout_btn" onClick={() => userLogout()}>
                   <Logout />
                   <span>
                     <p>Logout</p>
