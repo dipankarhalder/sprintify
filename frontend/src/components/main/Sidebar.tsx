@@ -6,7 +6,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { Logout, Close, Diamond } from '@/icons'
 
 /** configs */
-import { sideMenu, sideBottomMenu, mainMenu } from '@/config/infoDatas'
+import { sideMenu, sideBottomMenu, getMainMenus } from '@/config/infoDatas'
 import { avatar } from '@/config/image'
 
 /** components */
@@ -21,6 +21,7 @@ export const Sidebar = () => {
 
   /** hooks */
   const location = useLocation()
+  const mainMenu = getMainMenus()
   const { userLogout } = useAuthStore()
 
   /** methods */
@@ -89,7 +90,7 @@ export const Sidebar = () => {
             <span></span>
             <div className="app_selected_project">
               <p>Selected Project:</p>
-              <h5>Project Path</h5>
+              <h5>Shake Shack Overview</h5>
             </div>
           </div>
           <div className="app_sidebar_main_menu">
@@ -108,7 +109,7 @@ export const Sidebar = () => {
                               : ''
                           }
                         >
-                          <Link to="/">
+                          <Link to={inItems.path}>
                             {inItems.icon} {inItems.label}
                             {inItems.count && <span></span>}
                           </Link>

@@ -3,13 +3,16 @@ import { paths } from '@/config/paths'
 import { AuthLayout } from '@/layouts/AuthLayout'
 import { AdminLayout } from '@/layouts/AdminLayout'
 
-import { ErrorPage } from '@/pages/ErrorPage'
+import { ErrorPage } from '@/pages/error/ErrorPage'
 import { SigninPage } from '@/pages/auth/SigninPage'
 import { SignupPage } from '@/pages/auth/SignupPage'
 import { VerifiedEmailPage } from '@/pages/auth/VerifiedEmailPage'
 import { CountrySelection } from '@/pages/auth/CountrySelection'
-import { ForgotPage } from '@/pages/ForgotPage'
-import { DashboardPage } from '@/pages/DashboardPage'
+import { ForgotPage } from '@/pages/auth/ForgotPage'
+
+import { DashboardPage } from '@/pages/main/DashboardPage'
+import { ReportsPage } from '@/pages/main/ReportsPage'
+import { VendorsPage } from '@/pages/main/VendorsPage'
 
 /** routes path */
 const routes = createBrowserRouter([
@@ -29,10 +32,9 @@ const routes = createBrowserRouter([
     path: paths.admin,
     element: <AdminLayout />,
     children: [
-      {
-        index: true,
-        element: <DashboardPage />,
-      },
+      { index: true, element: <DashboardPage /> },
+      { path: paths.reports, element: <ReportsPage /> },
+      { path: paths.vendors, element: <VendorsPage /> },
     ],
   },
 ])
