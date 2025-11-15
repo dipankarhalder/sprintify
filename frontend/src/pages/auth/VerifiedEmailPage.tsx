@@ -1,31 +1,47 @@
+/** node modules */
 import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useForm } from '@tanstack/react-form'
-import { ToastContext } from '@/shared/Toast/ToastContext'
-import { FieldInfo } from '@/utils/fieldValidator'
+
+/** configs */
 import { paths } from '@/config/paths'
 
-const defaultRegisterUser: {
+/** shared components */
+import { ToastContext } from '@/shared/Toast/ToastContext'
+
+/** utils functions */
+import { FieldInfo } from '@/utils/fieldValidator'
+
+/** stores */
+import { useAuthStore } from '@/store/authStore'
+
+/** default value */
+const defaultUsername: {
   username: string
 } = {
   username: '',
 }
 
 export const VerifiedEmailPage = () => {
+  /** hooks */
   const navigate = useNavigate()
   const toast = useContext(ToastContext)
+  const { setUsername } = useAuthStore()
+
+  /** check toast component loaded or not */
   if (!toast) {
     throw new Error('SigninPage must be used within a ToastProvider')
   }
   const { showToast } = toast
 
+  /** form method */
   const form = useForm({
-    defaultValues: defaultRegisterUser,
+    defaultValues: defaultUsername,
     onSubmit: async ({ value }) => {
-      localStorage.setItem('authUser', value.username)
+      setUsername(value.username)
       showToast({
         type: 'success',
-        title: 'Successfully registered',
+        title: 'Successfully added username',
         description: JSON.stringify(value),
       })
       navigate(paths.selCountry)

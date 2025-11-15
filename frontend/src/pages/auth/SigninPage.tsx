@@ -9,6 +9,8 @@ import { paths } from '@/config/paths'
 /** components */
 import { AuthFooter } from '@/components/auth/AuthFooter'
 import { SocialAuth } from '@/components/auth/SocialAuth'
+
+/** shared components */
 import { ToastContext } from '@/shared/Toast/ToastContext'
 
 /** utils functions */
@@ -74,7 +76,7 @@ export const SigninPage = () => {
 
         removeUserEmail()
         setUsername('dipankar')
-        setUserAuthentication(true, 'authenticated')
+        setUserAuthentication('authenticated')
         showToast({
           type: 'success',
           title: 'Successfully signed-in',

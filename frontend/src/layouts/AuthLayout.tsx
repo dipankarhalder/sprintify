@@ -1,19 +1,19 @@
 /** node modules */
 import { Outlet, Navigate } from 'react-router-dom'
 
-/** configs */
-import { paths } from '@/config/paths'
-
 /** components */
 import { Logo } from '@/components/main/Logo'
 
+/** stores */
+import { useAuthStore } from '@/store/authStore'
+
 export const AuthLayout = () => {
-  /** localstorage */
-  const authTokenize = localStorage.getItem('authToken')
+  /** hooks */
+  const { isAuthenticated, isUsername } = useAuthStore()
 
   /** check the token available or not */
-  if (authTokenize) {
-    return <Navigate to={paths.admin} replace />
+  if (isAuthenticated) {
+    return <Navigate to={`/${isUsername}`} replace />
   }
 
   return (
