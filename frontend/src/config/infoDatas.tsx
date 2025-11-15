@@ -1,3 +1,4 @@
+/** icons */
 import {
   User,
   Home,
@@ -29,6 +30,12 @@ import {
   Notifications,
 } from '@/icons'
 
+/** stores */
+import { useAuthStore } from '@/store/authStore'
+
+/** config */
+import { paths } from '@/config/paths'
+
 export const groups = [
   { id: '1', label: 'codename.com' },
   { id: '2', label: 'projectpath.com' },
@@ -45,76 +52,93 @@ export const sideBottomMenu = [
   { id: 2, icon: <User />, name: 'Profile', path: '/' },
 ]
 
-export const mainMenu = [
-  {
-    id: 1,
-    label: 'Main Menu',
-    children: [{ id: 1, icon: <Home />, label: 'Dashboard', path: '/admin' }],
-  },
-  {
-    id: 2,
-    label: 'Manage Projects',
-    children: [
-      { id: 1, icon: <Tasks />, label: 'Tasks', path: '/', count: 24 },
-      { id: 3, icon: <Assets />, label: 'Assets', path: '/', count: 3 },
-      { id: 4, icon: <Reports />, label: 'Reports', path: '/' },
-      { id: 5, icon: <Schedules />, label: 'Schedules', path: '/' },
-      { id: 2, icon: <Teams />, label: 'Teams', path: '/', count: 7 },
-      { id: 6, icon: <Clients />, label: 'Clients', path: '/', count: 10 },
-      { id: 7, icon: <Invoice />, label: 'Invoices', path: '/' },
-    ],
-  },
-  {
-    id: 3,
-    label: 'Manage Products',
-    children: [
-      { id: 1, icon: <Products />, label: 'Products', path: '/' },
-      { id: 2, icon: <Tracking />, label: 'Trackings', path: '/' },
-      { id: 3, icon: <Rreturn />, label: 'Returns', path: '/', count: 12 },
-      { id: 4, icon: <Billings />, label: 'Billings', path: '/' },
-      { id: 5, icon: <Vendors />, label: 'Vendors', path: '/' },
-    ],
-  },
-  {
-    id: 4,
-    label: 'Manage Resources',
-    children: [
-      { id: 1, icon: <Resource />, label: 'Resources', path: '/' },
-      { id: 2, icon: <Members />, label: 'Members', path: '/', count: 6 },
-      { id: 3, icon: <Assets />, label: 'Assets', path: '/', count: 20 },
-      { id: 4, icon: <Reports />, label: 'Reports', path: '/' },
-      {
-        id: 5,
-        icon: <Schedules />,
-        label: 'Schedules',
-        path: '/',
-        count: 10,
-      },
-    ],
-  },
-  {
-    id: 5,
-    label: 'Manage Customers',
-    children: [
-      { id: 1, icon: <Phone />, label: 'Contact', path: '/' },
-      { id: 2, icon: <Companies />, label: 'Companies', path: '/' },
-      { id: 3, icon: <Deals />, label: 'Deals', path: '/' },
-      { id: 4, icon: <Anasysis />, label: 'Analytics', path: '/' },
-      { id: 5, icon: <Activity />, label: 'Activities', path: '/' },
-    ],
-  },
-  {
-    id: 6,
-    label: 'System Options',
-    children: [
-      { id: 1, icon: <Notify />, label: 'Notification', path: '/' },
-      { id: 2, icon: <Configr />, label: 'Settings', path: '/' },
-      {
-        id: 3,
-        icon: <Subscription />,
-        label: 'Subscription',
-        path: '/',
-      },
-    ],
-  },
-]
+export const getMainMenus = () => {
+  /** hooks */
+  const { isUsername } = useAuthStore()
+
+  return [
+    {
+      id: 1,
+      label: 'Main Menu',
+      children: [
+        { id: 1, icon: <Home />, label: 'Dashboard', path: `/${isUsername}` },
+      ],
+    },
+    {
+      id: 2,
+      label: 'Manage Projects',
+      children: [
+        { id: 1, icon: <Tasks />, label: 'Tasks', path: '/', count: 24 },
+        { id: 3, icon: <Assets />, label: 'Assets', path: '/', count: 3 },
+        {
+          id: 4,
+          icon: <Reports />,
+          label: 'Reports',
+          path: `/${isUsername}/${paths.reports}`,
+        },
+        { id: 5, icon: <Schedules />, label: 'Schedules', path: '/' },
+        { id: 2, icon: <Teams />, label: 'Teams', path: '/', count: 7 },
+        { id: 6, icon: <Clients />, label: 'Clients', path: '/', count: 10 },
+        { id: 7, icon: <Invoice />, label: 'Invoices', path: '/' },
+      ],
+    },
+    {
+      id: 3,
+      label: 'Manage Products',
+      children: [
+        { id: 1, icon: <Products />, label: 'Products', path: '/' },
+        { id: 2, icon: <Tracking />, label: 'Trackings', path: '/' },
+        { id: 3, icon: <Rreturn />, label: 'Returns', path: '/', count: 12 },
+        { id: 4, icon: <Billings />, label: 'Billings', path: '/' },
+        {
+          id: 5,
+          icon: <Vendors />,
+          label: 'Vendors',
+          path: `/${isUsername}/${paths.vendors}`,
+        },
+      ],
+    },
+    {
+      id: 4,
+      label: 'Manage Resources',
+      children: [
+        { id: 1, icon: <Resource />, label: 'Resources', path: '/' },
+        { id: 2, icon: <Members />, label: 'Members', path: '/', count: 6 },
+        { id: 3, icon: <Assets />, label: 'Assets', path: '/', count: 20 },
+        { id: 4, icon: <Reports />, label: 'Reports', path: '/' },
+        {
+          id: 5,
+          icon: <Schedules />,
+          label: 'Schedules',
+          path: '/',
+          count: 10,
+        },
+      ],
+    },
+    {
+      id: 5,
+      label: 'Manage Customers',
+      children: [
+        { id: 1, icon: <Phone />, label: 'Contact', path: '/' },
+        { id: 2, icon: <Companies />, label: 'Companies', path: '/' },
+        { id: 3, icon: <Deals />, label: 'Deals', path: '/' },
+        { id: 4, icon: <Anasysis />, label: 'Analytics', path: '/' },
+        { id: 5, icon: <Activity />, label: 'Activities', path: '/' },
+      ],
+    },
+    {
+      id: 6,
+      label: 'System Options',
+      children: [
+        { id: 1, icon: <Notify />, label: 'Notification', path: '/' },
+        { id: 2, icon: <Configr />, label: 'Settings', path: '/' },
+        {
+          id: 3,
+          icon: <Subscription />,
+          label: 'Subscription',
+          path: '/',
+        },
+      ],
+    },
+  ]
+}

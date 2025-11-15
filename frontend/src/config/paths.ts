@@ -6,4 +6,6 @@ export const paths = {
   selCountry: '/select-country',
   forgot: '/forgot-password',
   admin: '/:username',
+  reports: 'reports',
+  vendors: 'vendors',
 }

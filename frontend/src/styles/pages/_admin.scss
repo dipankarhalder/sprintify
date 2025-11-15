@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use '../core/color' as *;
 
 .app_admin_wrapper {
@@ -7,8 +8,70 @@
 
   .app_admin_cover_wrapper {
     width: calc(100% - 290px);
-    background: $sidebar;
     margin-left: 290px;
     border-right: 1px solid $border;
+    min-height: 100vh;
+
+    .app_page_inside_cover {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
   }
+}
+
+.app_top_page_information {
+  width: 100%;
+  display: flex;
+  height: 51px;
+  align-items: center;
+  padding: 0px 20px;
+  background: $white;
+  border-bottom: 1px solid $border;
+
+  .app_top_breadcumb {
+    display: flex;
+    gap: 6px;
+
+    & > span {
+      color: color.adjust($gray-300, $lightness: 36%);
+    }
+
+    & > a {
+      display: flex;
+      font-size: 14px;
+      font-weight: 500;
+      align-items: center;
+      color: color.adjust($gray-300, $lightness: 10%);
+      transition: 0.5s;
+
+      & > svg {
+        width: 14px;
+        height: 14px;
+        margin-right: 5px;
+
+        & > path {
+          stroke: color.adjust($gray-300, $lightness: 10%);
+          transition: 0.5s;
+        }
+      }
+
+      &:last-child,
+      &:hover {
+        color: $btnblue;
+        transition: 0.5s;
+
+        & > svg > path {
+          stroke: $btnblue;
+          transition: 0.5s;
+        }
+      }
+    }
+  }
+}
+
+.app_data_table_cover {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
