@@ -1,13 +1,25 @@
+/** node modules */
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { ShortLogo } from '@/components/main/ShortLogo'
-import { sideMenu, sideBottomMenu, mainMenu } from '@/config/infoDatas'
-import { avatar } from '@/config/image'
+
+/** icons */
 import { Logout, Close, Diamond } from '@/icons'
 
+/** configs */
+import { sideMenu, sideBottomMenu, mainMenu } from '@/config/infoDatas'
+import { avatar } from '@/config/image'
+
+/** components */
+import { ShortLogo } from '@/components/main/ShortLogo'
+
 export const Sidebar = () => {
-  const location = useLocation()
+  /** states */
   const [isClosed, setIsClosed] = useState(true)
+
+  /** hooks */
+  const location = useLocation()
+
+  /** methods */
   const handleClose = () => setIsClosed(false)
 
   return (

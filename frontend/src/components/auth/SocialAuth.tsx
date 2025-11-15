@@ -1,4 +1,4 @@
-/** icon */
+/** icons */
 import { Google, Microsoft, Apple } from '@/icons'
 
 export const SocialAuth = () => {

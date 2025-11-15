@@ -1,12 +1,25 @@
+/** node modules */
 import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useForm } from '@tanstack/react-form'
+
+/** configs */
 import { verify } from '@/config/image'
-import { CircleTick } from '@/icons'
 import { paths } from '@/config/paths'
+
+/** icons */
+import { CircleTick } from '@/icons'
+
+/** components */
 import { ToastContext } from '@/shared/Toast/ToastContext'
+
+/** utils functions */
 import { FieldInfo } from '@/utils/fieldValidator'
 
+/** stores */
+import { useAuthStore } from '@/store/authStore'
+
+/** default value */
 const defaultRegisterUser: {
   firstName: string
   lastName: string
@@ -18,15 +31,18 @@ const defaultRegisterUser: {
 }
 
 export const SignupPage = () => {
+  /** hooks */
   const navigate = useNavigate()
   const toast = useContext(ToastContext)
+  const { isUsername } = useAuthStore()
+
+  /** check toast component loaded or not */
   if (!toast) {
     throw new Error('SigninPage must be used within a ToastProvider')
   }
-
   const { showToast } = toast
-  const emailAddress = localStorage && localStorage.getItem('userEmail')
 
+  /** form method */
   const form = useForm({
     defaultValues: defaultRegisterUser,
     onSubmit: async ({ value }) => {
@@ -53,10 +69,10 @@ export const SignupPage = () => {
         >
           <div className="app_auth_input_extra">
             <em>Verified Email:</em>
-            {emailAddress && (
+            {isUsername && (
               <p>
-                {emailAddress}
-                <img src={verify} alt={emailAddress} />
+                {isUsername}
+                <img src={verify} alt={isUsername} />
                 <span>(Not Verified)</span>
               </p>
             )}

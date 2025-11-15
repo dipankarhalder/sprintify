@@ -1,10 +1,17 @@
+/** node modules */
 import { Outlet, Navigate } from 'react-router-dom'
+
+/** configs */
 import { paths } from '@/config/paths'
+
+/** components */
 import { Logo } from '@/components/main/Logo'
 
 export const AuthLayout = () => {
+  /** localstorage */
   const authTokenize = localStorage.getItem('authToken')
 
+  /** check the token available or not */
   if (authTokenize) {
     return <Navigate to={paths.admin} replace />
   }

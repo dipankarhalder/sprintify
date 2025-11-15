@@ -1,12 +1,23 @@
+/** node modules */
 import { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from '@tanstack/react-form'
+
+/** configs */
 import { paths } from '@/config/paths'
+
+/** components */
 import { AuthFooter } from '@/components/auth/AuthFooter'
 import { SocialAuth } from '@/components/auth/SocialAuth'
 import { ToastContext } from '@/shared/Toast/ToastContext'
+
+/** utils functions */
 import { FieldInfo } from '@/utils/fieldValidator'
 
+/** stores */
+import { useAuthStore } from '@/store/authStore'
+
+/** default value */
 const defaultLoginUser: {
   email: string
   password: string
@@ -16,31 +27,41 @@ const defaultLoginUser: {
 }
 
 export const SigninPage = () => {
-  const navigate = useNavigate()
+  /** states */
   const [isVerified, setIsVerified] = useState(false)
+
+  /** hooks */
+  const navigate = useNavigate()
   const toast = useContext(ToastContext)
+  const { setUserAuthentication, setUserEmail, removeUserEmail, setUsername } =
+    useAuthStore()
+
+  /** check toast component loaded or not */
   if (!toast) {
     throw new Error('SigninPage must be used within a ToastProvider')
   }
   const { showToast } = toast
 
+  /** form method */
   const form = useForm({
     defaultValues: defaultLoginUser,
     onSubmit: async ({ value }) => {
       const { email, password } = value
 
+      /** verify the user email exist or not */
       if (!isVerified) {
         if (email === 'dipankar@gmail.com') {
-          localStorage.removeItem('userEmail')
+          removeUserEmail()
           setIsVerified(true)
           return
         } else {
-          localStorage.setItem('userEmail', email)
+          setUserEmail(email)
           navigate(paths.register)
           return
         }
       }
 
+      /** if the email exist, user can continue with password field for login */
       if (isVerified) {
         if (!password) {
           showToast({
@@ -51,8 +72,9 @@ export const SigninPage = () => {
           return
         }
 
-        localStorage.removeItem('userEmail')
-        localStorage.setItem('authToken', 'authenticated')
+        removeUserEmail()
+        setUsername('dipankar')
+        setUserAuthentication(true, 'authenticated')
         showToast({
           type: 'success',
           title: 'Successfully signed-in',
