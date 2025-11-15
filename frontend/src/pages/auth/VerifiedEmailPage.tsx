@@ -22,6 +22,7 @@ export const VerifiedEmailPage = () => {
   const form = useForm({
     defaultValues: defaultRegisterUser,
     onSubmit: async ({ value }) => {
+      localStorage.setItem('authUser', value.username)
       showToast({
         type: 'success',
         title: 'Successfully registered',

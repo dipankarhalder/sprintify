@@ -1,4 +1,7 @@
+/** node modules */
 import { Link } from 'react-router-dom'
+
+/** icons */
 import { Alink } from '@/icons'
 
 export const AuthFooter = () => {
