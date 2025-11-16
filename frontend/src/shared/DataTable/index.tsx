@@ -14,7 +14,7 @@ import type { ColumnFiltersState, SortingState } from '@tanstack/react-table'
 import type { DataTableProps } from './types'
 
 /** icons */
-import { Rarrow, Larrow } from '@/icons'
+import { Rarrow, Larrow, Search } from '@/icons'
 
 export const DataTable = <T,>({ columns, data }: DataTableProps<T>) => {
   /** states */
@@ -47,46 +47,57 @@ export const DataTable = <T,>({ columns, data }: DataTableProps<T>) => {
 
   return (
     <div className="app_data_table_cover">
-      <p>{table.getFilteredRowModel().rows.length}</p>
-      <div className="">
-        <input
-          placeholder={`Filter vendor name...`}
-          value={(table.getColumn('name')?.getFilterValue() as string) ?? ''}
-          onChange={(event: { target: { value: any } }) =>
-            table.getColumn('name')?.setFilterValue(event.target.value)
-          }
-          className=""
-        />
+      <div className="app_heading_info">
+        <h2>
+          List of vendors{' '}
+          <span>({table.getFilteredRowModel().rows.length} items)</span>
+        </h2>
+        <div className="app_right_search_sorting">
+          <div className="app_header_search">
+            <Search />
+            <input
+              placeholder={`Search vendors here...`}
+              value={
+                (table.getColumn('name')?.getFilterValue() as string) ?? ''
+              }
+              onChange={(event: { target: { value: any } }) =>
+                table.getColumn('name')?.setFilterValue(event.target.value)
+              }
+            />
+          </div>
+        </div>
       </div>
-      <table>
-        <thead>
-          {table.getHeaderGroups().map(information => (
-            <tr key={information.id}>
-              {information.headers.map(info => (
-                <th key={info.id}>
-                  {info.isPlaceholder
-                    ? null
-                    : flexRender(
-                        info.column.columnDef.header,
-                        info.getContext(),
-                      )}
-                </th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody>
-          {table.getRowModel().rows.map(row => (
-            <tr key={row.id}>
-              {row.getVisibleCells().map(cell => (
-                <td key={cell.id}>
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <div className="app_data_table_main_cover">
+        <table>
+          <thead>
+            {table.getHeaderGroups().map(information => (
+              <tr key={information.id}>
+                {information.headers.map(info => (
+                  <th key={info.id}>
+                    {info.isPlaceholder
+                      ? null
+                      : flexRender(
+                          info.column.columnDef.header,
+                          info.getContext(),
+                        )}
+                  </th>
+                ))}
+              </tr>
+            ))}
+          </thead>
+          <tbody>
+            {table.getRowModel().rows.map(row => (
+              <tr key={row.id}>
+                {row.getVisibleCells().map(cell => (
+                  <td key={cell.id}>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
       <div className="flex-1 text-sm text-muted-foreground">
         {table.getFilteredSelectedRowModel().rows.length} of{' '}
         {table.getFilteredRowModel().rows.length} row(s) selected.
