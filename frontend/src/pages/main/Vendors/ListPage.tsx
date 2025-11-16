@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import type { ColumnDef } from '@tanstack/react-table'
 import type { VendorTypes } from './types'
-import { Vendors } from '@/icons'
+import { Alink } from '@/icons'
 import { DataTable } from '@/shared/DataTable'
 import vendorData from '@/data/vendors.json'
 
@@ -23,20 +23,18 @@ export const VendorListPage = () => {
         header: 'Action',
         cell: ({ row }) => {
           return (
-            <div className="text-right font-medium">
-              <div className="font-medium flex justify-start items-center w-auto">
-                <span className="">
-                  <Vendors />
-                  <p className="text-[12px]">View</p>
-                </span>
-                <span
-                  className=""
-                  onClick={() => handleEdit(row.original.id ?? '')}
-                >
-                  <Vendors />
-                  <p className="text-[12px]">Edit</p>
-                </span>
-              </div>
+            <div className="app_table_row_btns">
+              <span className="">
+                <Alink />
+                <p className="text-[12px]">View</p>
+              </span>
+              <span
+                className=""
+                onClick={() => handleEdit(row.original.id ?? '')}
+              >
+                <Alink />
+                <p className="text-[12px]">Edit</p>
+              </span>
             </div>
           )
         },
