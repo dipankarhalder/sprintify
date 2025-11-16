@@ -34,6 +34,7 @@ input,
 button,
 textarea,
 select {
+  font-family: $font;
   font: inherit;
 }
 
@@ -44,10 +45,12 @@ h3,
 h4,
 h5,
 h6 {
+  font-family: $font;
   overflow-wrap: break-word;
 }
 
 a {
+  font-family: $font;
   text-decoration: none;
 }
 
@@ -82,6 +85,7 @@ q:after {
 table {
   border-collapse: collapse;
   border-spacing: 0;
+  font-family: $font;
 }
 
 #root,
