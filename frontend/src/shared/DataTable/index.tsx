@@ -10,15 +10,19 @@ import {
 } from '@tanstack/react-table'
 
 /** types */
-import type { ColumnFiltersState, SortingState } from '@tanstack/react-table'
+import type { ColumnFiltersState } from '@tanstack/react-table'
 import type { DataTableProps } from './types'
 
 /** icons */
 import { Rarrow, Larrow, Search } from '@/icons'
 
-export const DataTable = <T,>({ columns, data }: DataTableProps<T>) => {
+export const DataTable = <T,>({
+  columns,
+  data,
+  sorting,
+  setSorting,
+}: DataTableProps<T>) => {
   /** states */
-  const [sorting, setSorting] = useState<SortingState>([])
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
   const [rowSelection, setRowSelection] = useState({})
 
@@ -28,20 +32,20 @@ export const DataTable = <T,>({ columns, data }: DataTableProps<T>) => {
     columns,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
-    getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
+    state: {
+      sorting,
+      columnFilters,
+      rowSelection,
+    },
     onSortingChange: setSorting,
+    getSortedRowModel: getSortedRowModel(),
     onColumnFiltersChange: setColumnFilters,
     onRowSelectionChange: setRowSelection,
     initialState: {
       pagination: {
         pageSize: 15,
       },
-    },
-    state: {
-      sorting,
-      columnFilters,
-      rowSelection,
     },
   })
 
@@ -98,59 +102,60 @@ export const DataTable = <T,>({ columns, data }: DataTableProps<T>) => {
           </tbody>
         </table>
       </div>
-      <div className="flex-1 text-sm text-muted-foreground">
-        {table.getFilteredSelectedRowModel().rows.length} of{' '}
-        {table.getFilteredRowModel().rows.length} row(s) selected.
-      </div>
-      <div className="flex items-center space-x-2">
-        <span className="flex items-center mr-4">
-          <p className="text-sm font-medium mr-2">Go to page</p>
-          <input
-            type="number"
-            min="1"
-            max={table.getPageCount()}
-            defaultValue={table.getState().pagination.pageIndex + 1}
-            onChange={e => {
-              const page = e.target.value ? Number(e.target.value) - 1 : 0
-              table.setPageIndex(page)
-            }}
-            className="border p-1 rounded h-8 w-14 text-center"
-          />
-        </span>
-      </div>
-      <div className="flex w-[100px] items-center justify-center text-sm font-medium">
-        Page {table.getState().pagination.pageIndex + 1} of{' '}
-        {table.getPageCount()}
-      </div>
-      <div className="flex items-center space-x-2">
-        <button
-          className="hidden h-8 w-8 p-0 lg:flex"
-          onClick={() => table.setPageIndex(0)}
-          disabled={!table.getCanPreviousPage()}
-        >
-          <Larrow />
-        </button>
-        <button
-          className="h-8 w-8 p-0"
-          onClick={() => table.previousPage()}
-          disabled={!table.getCanPreviousPage()}
-        >
-          <Larrow />
-        </button>
-        <button
-          className="h-8 w-8 p-0"
-          onClick={() => table.nextPage()}
-          disabled={!table.getCanNextPage()}
-        >
-          <Rarrow />
-        </button>
-        <button
-          className="hidden h-8 w-8 p-0 lg:flex"
-          onClick={() => table.setPageIndex(table.getPageCount() - 1)}
-          disabled={!table.getCanNextPage()}
-        >
-          <Rarrow />
-        </button>
+      <div className="app_table_footer_bottom">
+        <div className="flex-1 text-sm text-muted-foreground">
+          {table.getFilteredSelectedRowModel().rows.length} of{' '}
+          {table.getFilteredRowModel().rows.length} row(s) selected.
+        </div>
+        <div className="app_footer_spcl_info">
+          <div className="flex w-[100px] items-center justify-center text-sm font-medium">
+            Page {table.getState().pagination.pageIndex + 1} of{' '}
+            {table.getPageCount()}
+          </div>
+          <div className="app_got_page">
+            <p className="text-sm font-medium mr-2">Go to page</p>
+            <input
+              type="number"
+              min="1"
+              max={table.getPageCount()}
+              defaultValue={table.getState().pagination.pageIndex + 1}
+              onChange={e => {
+                const page = e.target.value ? Number(e.target.value) - 1 : 0
+                table.setPageIndex(page)
+              }}
+            />
+          </div>
+        </div>
+        <div className="app_footer_btn_group">
+          <button
+            className="app_pagination_btn"
+            onClick={() => table.setPageIndex(0)}
+            disabled={!table.getCanPreviousPage()}
+          >
+            <Larrow />
+          </button>
+          <button
+            className="app_pagination_btn"
+            onClick={() => table.previousPage()}
+            disabled={!table.getCanPreviousPage()}
+          >
+            <Larrow />
+          </button>
+          <button
+            className="app_pagination_btn"
+            onClick={() => table.nextPage()}
+            disabled={!table.getCanNextPage()}
+          >
+            <Rarrow />
+          </button>
+          <button
+            className="app_pagination_btn"
+            onClick={() => table.setPageIndex(table.getPageCount() - 1)}
+            disabled={!table.getCanNextPage()}
+          >
+            <Rarrow />
+          </button>
+        </div>
       </div>
     </div>
   )

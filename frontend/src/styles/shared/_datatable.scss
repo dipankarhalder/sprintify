@@ -54,23 +54,41 @@
   .app_data_table_main_cover {
     width: 100%;
     background: $white;
-    border: 1px solid $border;
-    border-radius: 10px;
+    border: 1px solid $tableborder;
+    border-radius: 6px;
     overflow: auto;
-    height: 630px;
 
     table {
       width: 100%;
 
       thead {
-        tr {
-          border-bottom: 1px solid $border;
+        background: $tablehead;
 
+        tr {
+          border-bottom: 1px solid $tableborder;
           th {
+            padding: 0.7rem 1rem;
             text-align: left;
-            padding: 8px 14px;
-            font-size: 13px;
+            text-transform: uppercase;
+            font-size: 12px;
             font-weight: 500;
+
+            .app_sort_header {
+              display: flex;
+              width: auto;
+              cursor: pointer;
+              align-items: center;
+              gap: 5px;
+
+              & > svg {
+                width: 14px;
+                height: 14px;
+              }
+            }
+
+            &:last-child {
+              text-align: right;
+            }
           }
         }
       }
@@ -81,17 +99,37 @@
 
           td {
             text-align: left;
-            padding: 8px 14px;
+            padding: 0.5rem 1rem;
             font-size: 15px;
             font-weight: 500;
 
+            a {
+              color: $btnblue;
+              text-decoration: underline;
+            }
+
             .app_table_row_btns {
               display: flex;
+              justify-content: flex-end;
               gap: 6px;
 
-              & > span {
+              & > button {
                 display: flex;
                 align-items: center;
+                border: 0px solid transparent;
+                padding: 10px;
+                cursor: pointer;
+                border-radius: 4px;
+                background: $tablehead;
+                transition: 0.5s;
+
+                &.app_table_edit_btn {
+                  color: $btnblue;
+                }
+
+                &.app_table_delete_btn {
+                  color: $red-300;
+                }
 
                 & > svg {
                   width: 14px;
@@ -101,6 +139,50 @@
             }
           }
         }
+      }
+    }
+  }
+}
+
+.app_table_footer_bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 26px;
+
+  .app_footer_spcl_info {
+    display: flex;
+    gap: 24px;
+
+    .app_got_page {
+      display: flex;
+
+      & > input {
+        width: 34px;
+        height: 34px;
+        text-align: center;
+        border-radius: 6px;
+        font-weight: 500;
+        font-size: 15px;
+        color: $black;
+        border: 1px solid $inputborder;
+      }
+    }
+  }
+
+  .app_footer_btn_group {
+    display: flex;
+
+    .app_pagination_btn {
+      display: flex;
+      padding: 10px;
+      cursor: pointer;
+      align-items: center;
+      gap: 5px;
+
+      & > svg {
+        width: 14px;
+        height: 14px;
       }
     }
   }

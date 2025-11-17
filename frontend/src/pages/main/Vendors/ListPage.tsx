@@ -1,47 +1,111 @@
-import { useMemo } from 'react'
-import type { ColumnDef } from '@tanstack/react-table'
+import { useMemo, useState } from 'react'
+import { Link } from 'react-router-dom'
+import type { ColumnDef, SortingState } from '@tanstack/react-table'
 import type { VendorTypes } from './types'
-import { Alink } from '@/icons'
+import { Edit, Delete } from '@/icons'
 import { DataTable } from '@/shared/DataTable'
+import { SortHeader } from '@/shared/DataTable/SortHeader'
 import vendorData from '@/data/vendors.json'
 
 export const VendorListPage = () => {
+  const [sorting, setSorting] = useState<SortingState>([])
+
   const handleEdit = (id: string) => {
     console.log(id)
   }
 
   const columns = useMemo<ColumnDef<VendorTypes>[]>(
     () => [
-      { accessorKey: 'name', header: 'Vendor Name' },
+      {
+        id: 'select',
+        header: ({ table }) => (
+          <input
+            type="checkbox"
+            checked={table.getIsAllPageRowsSelected()}
+            onChange={table.getToggleAllPageRowsSelectedHandler()}
+          />
+        ),
+        cell: ({ row }) => (
+          <input
+            type="checkbox"
+            checked={row.getIsSelected()}
+            onChange={row.getToggleSelectedHandler()}
+          />
+        ),
+        enableSorting: false,
+        enableHiding: false,
+      },
+      {
+        accessorKey: 'name',
+        enableSorting: true,
+        enableSortingRemoval: true,
+        header: ({ column }) => (
+          <SortHeader column={column} title="Vendor Name" />
+        ),
+        cell: ({ row }) => {
+          const vendor = row.original
+          return (
+            <Link
+              to={`/vendors/${vendor.id}`}
+              className="text-blue-600 underline hover:text-blue-800"
+            >
+              {vendor.name}
+            </Link>
+          )
+        },
+      },
       { accessorKey: 'contactPerson', header: 'Contact Person' },
       { accessorKey: 'email', header: 'Email' },
       { accessorKey: 'phone', header: 'Phone' },
-      { accessorKey: 'category', header: 'Category' },
-      { accessorKey: 'status', header: 'Status' },
+      {
+        accessorKey: 'category',
+        header: ({ column }) => (
+          <SortHeader column={column} title="Categories" />
+        ),
+      },
+      {
+        accessorKey: 'status',
+        header: ({ column }) => <SortHeader column={column} title="Status" />,
+        cell: ({ row }) => {
+          return (
+            <p className="text-blue-600 underline hover:text-blue-800">
+              {row.original.status === 'active' ? 'Active' : 'Inactive'}
+            </p>
+          )
+        },
+      },
       {
         accessorKey: 'actions',
         header: 'Action',
         cell: ({ row }) => {
           return (
             <div className="app_table_row_btns">
-              <span className="">
-                <Alink />
-                <p className="text-[12px]">View</p>
-              </span>
-              <span
-                className=""
+              <button
+                className="app_table_edit_btn"
                 onClick={() => handleEdit(row.original.id ?? '')}
               >
-                <Alink />
-                <p className="text-[12px]">Edit</p>
-              </span>
+                <Edit />
+              </button>
+              <button
+                className="app_table_delete_btn"
+                onClick={() => handleEdit(row.original.id ?? '')}
+              >
+                <Delete />
+              </button>
             </div>
           )
         },
       },
     ],
-    [],
+    [sorting],
   )
 
-  return <DataTable columns={columns} data={vendorData.vendors} />
+  return (
+    <DataTable
+      columns={columns}
+      data={vendorData.vendors}
+      sorting={sorting}
+      setSorting={setSorting}
+    />
+  )
 }
