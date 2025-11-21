@@ -5,7 +5,15 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  padding: 0 20px;
+  padding: 20px;
+
+  .app_data_table_inside {
+    background: $tablebg;
+    width: 100%;
+    display: flex;
+    border-radius: 6px;
+    flex-direction: column;
+  }
 
   .app_heading_info {
     width: 100%;
@@ -66,12 +74,17 @@
 
         tr {
           border-bottom: 1px solid $tableborder;
+
           th {
-            padding: 0.7rem 1rem;
+            padding: 0.6rem 1rem;
             text-align: left;
-            text-transform: uppercase;
-            font-size: 12px;
+            font-size: 13px;
             font-weight: 500;
+            color: $gray-300;
+
+            input[type='checkbox'] {
+              margin-top: 3px;
+            }
 
             .app_sort_header {
               display: flex;
@@ -95,11 +108,11 @@
 
       tbody {
         tr {
-          border-bottom: 1px solid $border;
+          border-bottom: 1px solid color.adjust($border, $lightness: 5%);
 
           td {
             text-align: left;
-            padding: 0.5rem 1rem;
+            padding: 0.4rem 1rem;
             font-size: 15px;
             font-weight: 500;
 
@@ -148,14 +161,45 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 26px;
+  padding: 14px 18px;
+
+  .app_table_footer_left_side {
+    display: flex;
+    width: auto;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .app_table_data_count {
+    display: flex;
+
+    & > p {
+      color: $gray-300;
+      font-size: 14px;
+      font-weight: 500;
+
+      & > span {
+        color: $black;
+      }
+    }
+  }
 
   .app_footer_spcl_info {
     display: flex;
     gap: 24px;
+    align-items: center;
 
     .app_got_page {
       display: flex;
+      align-items: center;
+      gap: 8px;
+
+      & > p {
+        color: $gray-300;
+        margin-left: 10px;
+        font-size: 14px;
+        font-weight: 500;
+      }
 
       & > input {
         width: 34px;
@@ -163,7 +207,7 @@
         text-align: center;
         border-radius: 6px;
         font-weight: 500;
-        font-size: 15px;
+        font-size: 14px;
         color: $black;
         border: 1px solid $inputborder;
       }
@@ -172,17 +216,39 @@
 
   .app_footer_btn_group {
     display: flex;
+    align-items: center;
+    gap: 10px;
 
-    .app_pagination_btn {
+    .app_footer_pages_counters {
+      width: auto;
+
+      & > p {
+        color: $gray-300;
+        margin-left: 10px;
+        font-size: 14px;
+        font-weight: 500;
+      }
+    }
+
+    .app_pagination_btn_cover {
+      width: auto;
       display: flex;
-      padding: 10px;
-      cursor: pointer;
       align-items: center;
-      gap: 5px;
+      gap: 2px;
 
-      & > svg {
-        width: 14px;
-        height: 14px;
+      .app_pagination_btn {
+        display: flex;
+        padding: 10px;
+        cursor: pointer;
+        align-items: center;
+        border: 0px solid transparent;
+        gap: 5px;
+        background: $white;
+
+        & > svg {
+          width: 14px;
+          height: 14px;
+        }
       }
     }
   }
