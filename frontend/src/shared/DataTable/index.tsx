@@ -71,90 +71,104 @@ export const DataTable = <T,>({
           </div>
         </div>
       </div>
-      <div className="app_data_table_main_cover">
-        <table>
-          <thead>
-            {table.getHeaderGroups().map(information => (
-              <tr key={information.id}>
-                {information.headers.map(info => (
-                  <th key={info.id}>
-                    {info.isPlaceholder
-                      ? null
-                      : flexRender(
-                          info.column.columnDef.header,
-                          info.getContext(),
-                        )}
-                  </th>
-                ))}
-              </tr>
-            ))}
-          </thead>
-          <tbody>
-            {table.getRowModel().rows.map(row => (
-              <tr key={row.id}>
-                {row.getVisibleCells().map(cell => (
-                  <td key={cell.id}>
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-      <div className="app_table_footer_bottom">
-        <div className="flex-1 text-sm text-muted-foreground">
-          {table.getFilteredSelectedRowModel().rows.length} of{' '}
-          {table.getFilteredRowModel().rows.length} row(s) selected.
+      <div className="app_data_table_inside">
+        <div className="app_data_table_main_cover">
+          <table>
+            <thead>
+              {table.getHeaderGroups().map(information => (
+                <tr key={information.id}>
+                  {information.headers.map(info => (
+                    <th key={info.id}>
+                      {info.isPlaceholder
+                        ? null
+                        : flexRender(
+                            info.column.columnDef.header,
+                            info.getContext(),
+                          )}
+                    </th>
+                  ))}
+                </tr>
+              ))}
+            </thead>
+            <tbody>
+              {table.getRowModel().rows.map(row => (
+                <tr key={row.id}>
+                  {row.getVisibleCells().map(cell => (
+                    <td key={cell.id}>
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext(),
+                      )}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
-        <div className="app_footer_spcl_info">
-          <div className="flex w-[100px] items-center justify-center text-sm font-medium">
-            Page {table.getState().pagination.pageIndex + 1} of{' '}
-            {table.getPageCount()}
+        <div className="app_table_footer_bottom">
+          <div className="app_table_footer_left_side">
+            <div className="app_table_data_count">
+              <p>
+                <span>{table.getFilteredSelectedRowModel().rows.length}</span>{' '}
+                of <span>{table.getFilteredRowModel().rows.length} row(s)</span>{' '}
+                selected.
+              </p>
+            </div>
+            <div className="app_footer_spcl_info">
+              <div className="app_got_page">
+                <p>Row per page</p>
+                <input
+                  type="number"
+                  min="1"
+                  max={table.getPageCount()}
+                  defaultValue={table.getState().pagination.pageIndex + 1}
+                  onChange={e => {
+                    const page = e.target.value ? Number(e.target.value) - 1 : 0
+                    table.setPageIndex(page)
+                  }}
+                />
+              </div>
+            </div>
           </div>
-          <div className="app_got_page">
-            <p className="text-sm font-medium mr-2">Go to page</p>
-            <input
-              type="number"
-              min="1"
-              max={table.getPageCount()}
-              defaultValue={table.getState().pagination.pageIndex + 1}
-              onChange={e => {
-                const page = e.target.value ? Number(e.target.value) - 1 : 0
-                table.setPageIndex(page)
-              }}
-            />
+          <div className="app_footer_btn_group">
+            <div className="app_footer_pages_counters">
+              <p>
+                Page {table.getState().pagination.pageIndex + 1} of{' '}
+                {table.getPageCount()}
+              </p>
+            </div>
+            <div className="app_pagination_btn_cover">
+              <button
+                className="app_pagination_btn"
+                onClick={() => table.setPageIndex(0)}
+                disabled={!table.getCanPreviousPage()}
+              >
+                <Larrow />
+              </button>
+              <button
+                className="app_pagination_btn"
+                onClick={() => table.previousPage()}
+                disabled={!table.getCanPreviousPage()}
+              >
+                <Larrow />
+              </button>
+              <button
+                className="app_pagination_btn"
+                onClick={() => table.nextPage()}
+                disabled={!table.getCanNextPage()}
+              >
+                <Rarrow />
+              </button>
+              <button
+                className="app_pagination_btn"
+                onClick={() => table.setPageIndex(table.getPageCount() - 1)}
+                disabled={!table.getCanNextPage()}
+              >
+                <Rarrow />
+              </button>
+            </div>
           </div>
-        </div>
-        <div className="app_footer_btn_group">
-          <button
-            className="app_pagination_btn"
-            onClick={() => table.setPageIndex(0)}
-            disabled={!table.getCanPreviousPage()}
-          >
-            <Larrow />
-          </button>
-          <button
-            className="app_pagination_btn"
-            onClick={() => table.previousPage()}
-            disabled={!table.getCanPreviousPage()}
-          >
-            <Larrow />
-          </button>
-          <button
-            className="app_pagination_btn"
-            onClick={() => table.nextPage()}
-            disabled={!table.getCanNextPage()}
-          >
-            <Rarrow />
-          </button>
-          <button
-            className="app_pagination_btn"
-            onClick={() => table.setPageIndex(table.getPageCount() - 1)}
-            disabled={!table.getCanNextPage()}
-          >
-            <Rarrow />
-          </button>
         </div>
       </div>
     </div>

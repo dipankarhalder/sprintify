@@ -21,6 +21,7 @@ export const VendorListPage = () => {
         header: ({ table }) => (
           <input
             type="checkbox"
+            id="select-row"
             checked={table.getIsAllPageRowsSelected()}
             onChange={table.getToggleAllPageRowsSelectedHandler()}
           />
