@@ -3,195 +3,25 @@
 
 .app_sidebar {
   position: fixed;
-  width: 290px;
+  width: 250px;
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background: $white;
+  background: $backcol;
 
   .app_sidebar_colum_cover {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     position: relative;
     width: 100%;
     height: 100vh;
 
-    .app_sidebar_column {
-      width: 80px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-between;
-      border-right: 1px solid $border;
-      padding: 10px 8px;
-      position: relative;
-      z-index: 1;
-
-      .app_sidebar_col {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-
-        .app_sidebar_logo {
-          width: 100%;
-          height: 34px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          margin-bottom: 4rem;
-
-          & > svg {
-            width: 34px;
-            height: 34px;
-          }
-        }
-      }
-
-      .app_project_selection_side {
-        width: 100%;
-
-        & > ul {
-          width: 100%;
-          display: flex;
-          flex-direction: column;
-          gap: 10px;
-
-          li {
-            width: 100%;
-            height: auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            & > span {
-              width: 100%;
-              height: 49px;
-              border-radius: 8px;
-              background: color.adjust($gray-100, $lightness: 18%);
-            }
-          }
-        }
-      }
-
-      .app_sidebar_col_bottom {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-      }
-    }
-
-    .app_product_links {
-      width: 100%;
-
-      & > ul {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        gap: 8px;
-
-        & > li {
-          width: 100%;
-          height: 45px;
-          display: flex;
-          cursor: pointer;
-          align-items: center;
-          text-align: center;
-          position: relative;
-          border-radius: 8px;
-          justify-content: center;
-
-          & > svg {
-            width: 22px;
-            height: 22px;
-            transition: 0.5s;
-          }
-
-          & > span {
-            position: absolute;
-            top: 50%;
-            left: 100%;
-            width: auto;
-            color: $white;
-            display: none;
-            padding-left: 10px;
-            transform: translateY(-50%);
-
-            &:after {
-              content: '';
-              position: absolute;
-              width: 10px;
-              height: 10px;
-              left: 5px;
-              top: 50%;
-              transform: translateY(-50%) rotate(45deg);
-              background: $gray-300;
-            }
-
-            & > p {
-              text-align: left;
-              padding: 8px 12px;
-              border-radius: 8px;
-              font-size: 14px;
-              font-weight: 500;
-              background: $gray-300;
-            }
-          }
-
-          &:hover {
-            background: color.adjust($gray-100, $lightness: 20%);
-
-            & > svg {
-              opacity: 1;
-              transition: 0.5s;
-
-              & > path {
-                stroke: $btnblue;
-              }
-            }
-
-            & > span {
-              display: block;
-            }
-          }
-
-          &.app_active_link {
-            background: color.adjust($gray-100, $lightness: 20%);
-
-            & > svg {
-              opacity: 1;
-              transition: 0.5s;
-
-              & > path {
-                stroke: $btnblue;
-              }
-            }
-          }
-
-          &.app_logout_btn {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: color.adjust($red-100, $lightness: 28%);
-
-            & > svg > path {
-              stroke: color.adjust($red-300, $lightness: -6%);
-            }
-          }
-        }
-      }
-    }
-
     .app_sidebar_content {
       display: flex;
-      gap: 14px;
       width: 100%;
       padding: 0px;
       height: 100vh;
       flex-direction: column;
-      border-right: 1px solid $border;
       overflow-y: auto;
       scrollbar-width: none;
       -ms-overflow-style: none;
@@ -200,15 +30,36 @@
         display: none;
       }
 
+      .app_sidebar_logo {
+        width: 100%;
+        height: auto;
+        display: flex;
+        padding: 14px 15px 10px;
+        align-items: center;
+        justify-content: center;
+
+        & > span {
+          display: flex;
+          width: 100%;
+          height: auto;
+          align-items: flex-start;
+
+          & > svg {
+            width: auto;
+            height: 30px;
+          }
+        }
+      }
+
       .app_select_project {
         position: sticky;
         top: 0px;
         z-index: 2;
         display: flex;
-        padding: 8px 15px;
-        background: $white;
+        margin-bottom: 20px;
+        padding: 14px 15px;
         align-items: center;
-        border-bottom: 1px solid $border;
+        background: $backcol;
 
         & > span {
           width: 34px;
@@ -289,7 +140,7 @@
                   align-items: center;
                   width: 100%;
                   gap: 9px;
-                  padding: 7px 12px;
+                  padding: 7px 9px;
                   font-weight: 500;
                   font-size: 14px;
                   color: $black;
@@ -317,7 +168,8 @@
                 &:hover a,
                 &.activeLink a {
                   color: $btnblue;
-                  background: color.adjust($blue-100, $lightness: 28%);
+                  background: $white;
+                  box-shadow: $shadow-2;
 
                   & > svg > path,
                   & > svg > g > path {
@@ -365,15 +217,14 @@
   .app_upgrade_section {
     display: flex;
     flex-wrap: wrap;
-    padding: 10px 12px;
-    border-top: 1px solid $border;
-    background: $white;
+    padding: 14px 12px;
     position: sticky;
     bottom: 0px;
+    background: $backcol;
 
     & > span {
-      width: 40px;
-      height: 40px;
+      width: 35px;
+      height: 35px;
       background: $gray-100;
       border-radius: 50%;
       overflow: hidden;
@@ -385,8 +236,8 @@
     }
 
     .app_user_info {
-      width: calc(100% - 50px);
-      margin-left: 10px;
+      width: calc(100% - 75px);
+      margin-left: 5px;
 
       h2 {
         font-size: 14px;
@@ -401,6 +252,25 @@
         font-size: 12px;
         font-weight: 500;
         line-height: 16px;
+      }
+    }
+
+    .app_logout_btn {
+      display: flex;
+      width: 35px;
+      height: 35px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: color.adjust($red-100, $lightness: 28%);
+
+      & > svg {
+        width: 20px;
+        height: 20px;
+
+        & > path {
+          stroke: color.adjust($red-300, $lightness: -6%);
+        }
       }
     }
   }

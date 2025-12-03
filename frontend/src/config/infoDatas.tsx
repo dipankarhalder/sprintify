@@ -7,7 +7,6 @@ import {
   Tasks,
   Teams,
   Notify,
-  Search,
   Assets,
   Members,
   Configr,
@@ -25,9 +24,7 @@ import {
   Anasysis,
   Activity,
   Schedules,
-  Dashboard,
   Subscription,
-  Notifications,
 } from '@/icons'
 
 /** stores */
@@ -41,17 +38,6 @@ export const groups = [
   { id: '2', label: 'projectpath.com' },
 ]
 
-export const sideMenu = [
-  { id: 1, icon: <Dashboard />, name: 'Dashboard', path: '/admin' },
-  { id: 2, icon: <Search />, name: 'Search', path: '/' },
-  { id: 3, icon: <Notifications />, name: 'Notification', path: '/' },
-]
-
-export const sideBottomMenu = [
-  { id: 1, icon: <Settings />, name: 'Settings', path: '/' },
-  { id: 2, icon: <User />, name: 'Profile', path: '/' },
-]
-
 export const getMainMenus = () => {
   /** hooks */
   const { isUsername } = useAuthStore()
@@ -62,11 +48,12 @@ export const getMainMenus = () => {
       label: 'Main Menu',
       children: [
         { id: 1, icon: <Home />, label: 'Dashboard', path: `/${isUsername}` },
+        { id: 2, icon: <Anasysis />, label: 'Analytics', path: '/' },
       ],
     },
     {
       id: 2,
-      label: 'Manage Projects',
+      label: 'Projects',
       children: [
         { id: 1, icon: <Tasks />, label: 'Tasks', path: '/', count: 24 },
         { id: 3, icon: <Assets />, label: 'Assets', path: '/', count: 3 },
@@ -84,7 +71,7 @@ export const getMainMenus = () => {
     },
     {
       id: 3,
-      label: 'Manage Products',
+      label: 'Products',
       children: [
         { id: 1, icon: <Products />, label: 'Products', path: '/' },
         { id: 2, icon: <Tracking />, label: 'Trackings', path: '/' },
@@ -100,7 +87,7 @@ export const getMainMenus = () => {
     },
     {
       id: 4,
-      label: 'Manage Resources',
+      label: 'Resources',
       children: [
         { id: 1, icon: <Resource />, label: 'Resources', path: '/' },
         { id: 2, icon: <Members />, label: 'Members', path: '/', count: 6 },
@@ -122,8 +109,7 @@ export const getMainMenus = () => {
         { id: 1, icon: <Phone />, label: 'Contact', path: '/' },
         { id: 2, icon: <Companies />, label: 'Companies', path: '/' },
         { id: 3, icon: <Deals />, label: 'Deals', path: '/' },
-        { id: 4, icon: <Anasysis />, label: 'Analytics', path: '/' },
-        { id: 5, icon: <Activity />, label: 'Activities', path: '/' },
+        { id: 4, icon: <Activity />, label: 'Activities', path: '/' },
       ],
     },
     {
@@ -131,13 +117,15 @@ export const getMainMenus = () => {
       label: 'System Options',
       children: [
         { id: 1, icon: <Notify />, label: 'Notification', path: '/' },
-        { id: 2, icon: <Configr />, label: 'Settings', path: '/' },
+        { id: 2, icon: <Configr />, label: 'Preferences', path: '/' },
+        { id: 3, icon: <Settings />, label: 'Settings', path: '/' },
         {
-          id: 3,
+          id: 4,
           icon: <Subscription />,
           label: 'Subscription',
           path: '/',
         },
+        { id: 5, icon: <User />, label: 'Profile', path: '/' },
       ],
     },
   ]

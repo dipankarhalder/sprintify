@@ -6,11 +6,11 @@ import { Link, useLocation } from 'react-router-dom'
 import { Logout, Close, Diamond } from '@/icons'
 
 /** configs */
-import { sideMenu, sideBottomMenu, getMainMenus } from '@/config/infoDatas'
+import { getMainMenus } from '@/config/infoDatas'
 import { avatar } from '@/config/image'
 
 /** components */
-import { ShortLogo } from '@/components/main/ShortLogo'
+import { Logo } from '@/components/main/Logo'
 
 /** stores */
 import { useAuthStore } from '@/store/authStore'
@@ -30,62 +30,10 @@ export const Sidebar = () => {
   return (
     <div className="app_sidebar">
       <div className="app_sidebar_colum_cover">
-        <div className="app_sidebar_column">
-          <div className="app_sidebar_col">
-            <div className="app_sidebar_logo">
-              <ShortLogo />
-            </div>
-            <div className="app_product_links">
-              <ul>
-                {sideMenu.map(item => (
-                  <li
-                    key={item.id}
-                    className={item.id === 1 ? 'app_active_link' : ''}
-                  >
-                    {item.icon}
-                    <span>
-                      <p> {item.name}</p>
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-          <div className="app_project_selection_side">
-            <ul>
-              <li>
-                <span></span>
-              </li>
-              <li>
-                <span></span>
-              </li>
-              <li>
-                <span></span>
-              </li>
-            </ul>
-          </div>
-          <div className="app_sidebar_col_bottom">
-            <div className="app_product_links">
-              <ul>
-                {sideBottomMenu.map(item => (
-                  <li key={item.id}>
-                    {item.icon}
-                    <span>
-                      <p> {item.name}</p>
-                    </span>
-                  </li>
-                ))}
-                <li className="app_logout_btn" onClick={() => userLogout()}>
-                  <Logout />
-                  <span>
-                    <p>Logout</p>
-                  </span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
         <div className="app_sidebar_content">
+          <div className="app_sidebar_logo">
+            <Logo />
+          </div>
           <div className="app_select_project">
             <span></span>
             <div className="app_selected_project">
@@ -128,13 +76,16 @@ export const Sidebar = () => {
               <h2>Dipankar Halder</h2>
               <p>dipankar@gmail.com</p>
             </div>
+            <div className="app_logout_btn" onClick={() => userLogout()}>
+              <Logout />
+            </div>
           </div>
         </div>
         {isClosed && (
           <div className="app_side_subscription">
             <div className="app_sub_heading">
               <Diamond />
-              <p>Premium plans</p>
+              <p>Premium Plans</p>
               <span className="app_sub_close" onClick={() => handleClose()}>
                 <Close />
               </span>

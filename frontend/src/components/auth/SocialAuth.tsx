@@ -1,5 +1,5 @@
 /** icons */
-import { Google, Microsoft, Apple } from '@/icons'
+import { Google, Microsoft } from '@/icons'
 
 export const SocialAuth = () => {
   return (
@@ -16,10 +16,6 @@ export const SocialAuth = () => {
           <li>
             <Microsoft />
             <p>Microsoft</p>
-          </li>
-          <li>
-            <Apple />
-            <p>Apple</p>
           </li>
         </ul>
       </div>

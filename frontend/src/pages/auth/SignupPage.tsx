@@ -34,7 +34,7 @@ export const SignupPage = () => {
   /** hooks */
   const navigate = useNavigate()
   const toast = useContext(ToastContext)
-  const { isUsername } = useAuthStore()
+  const { isUserEmail } = useAuthStore()
 
   /** check toast component loaded or not */
   if (!toast) {
@@ -69,10 +69,10 @@ export const SignupPage = () => {
         >
           <div className="app_auth_input_extra">
             <em>Verified Email:</em>
-            {isUsername && (
+            {isUserEmail && (
               <p>
-                {isUsername}
-                <img src={verify} alt={isUsername} />
+                {isUserEmail}
+                <img src={verify} alt={isUserEmail} />
                 <span>(Not Verified)</span>
               </p>
             )}

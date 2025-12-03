@@ -7,8 +7,8 @@
   flex-wrap: nowrap;
 
   .app_admin_cover_wrapper {
-    width: calc(100% - 290px);
-    margin-left: 290px;
+    width: calc(100% - 250px);
+    margin-left: 250px;
     border-right: 1px solid $border;
     min-height: 100vh;
 
@@ -25,6 +25,7 @@
   z-index: 2;
   width: 100%;
   display: flex;
+  background: $backcol;
 }
 
 .app_top_page_information {
@@ -33,8 +34,6 @@
   height: 51px;
   align-items: center;
   padding: 0px 20px;
-  background: $white;
-  border-bottom: 1px solid $border;
 
   .app_top_breadcumb {
     display: flex;

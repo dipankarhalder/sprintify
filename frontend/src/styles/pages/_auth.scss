@@ -9,7 +9,7 @@
   .app_auth_wrapper_sidebar {
     display: flex;
     height: 100vh;
-    width: 100%;
+    width: 40%;
     position: relative;
 
     .app_auth_logo {
@@ -37,14 +37,12 @@
         width: 420px;
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start;
         justify-content: center;
-        background: $white;
         padding: 32px 40px 36px;
         border-radius: 10px;
-        box-shadow: $shadow-1;
         position: absolute;
-        top: 6rem;
+        top: 4rem;
         left: 50%;
         transform: translateX(-50%);
         margin-bottom: 50px;
@@ -57,7 +55,7 @@
           h1 {
             font-family: $font;
             width: 100%;
-            text-align: center;
+            text-align: left;
             font-size: 20px;
             font-weight: 500;
             margin-bottom: 0px;
@@ -66,11 +64,11 @@
           & > p {
             color: $bodytext;
             width: 100%;
-            text-align: center;
+            text-align: left;
             font-size: 14px;
             font-weight: 500;
             line-height: 18px;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
           }
 
           .app_auth_form {
@@ -294,8 +292,8 @@
                 & > p {
                   color: $bodytext;
                   width: 100%;
-                  text-align: center;
-                  font-size: 15px;
+                  text-align: left;
+                  font-size: 14px;
                   font-weight: 500;
                 }
               }
@@ -357,20 +355,19 @@
     .app_background_content {
       z-index: -1;
       background-color: $white;
-      background-image:
-        linear-gradient($white 20%, #fff0), url('/auth_bg.svg'),
-        url('/bglogin.png');
-      background-position:
-        0 0,
-        50% 100%,
-        center;
-      background-size:
-        auto,
-        156px 144px,
-        cover;
       position: absolute;
       inset: 0%;
-      opacity: 0.6;
+      opacity: 1;
     }
+  }
+
+  .app_log_auth_bg {
+    background-image: url('/logbg.jpg');
+    background-position: center right;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: #e0dfe7;
+    height: 100vh;
+    width: 60%;
   }
 }
