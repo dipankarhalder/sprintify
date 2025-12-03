@@ -1,15 +1,16 @@
+@use 'sass:color';
 @use '../core/color' as *;
 
 .app_policy_info {
   width: 100%;
-  border-top: 1px solid $border;
-  margin-top: 24px;
-  padding-top: 18px;
+  border-top: 1px solid color.adjust($border, $lightness: 6%);
+  margin-top: 28px;
+  padding-top: 14px;
 
   & > p {
     position: relative;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     font-family: $font;
     font-weight: 500;
@@ -80,10 +81,11 @@
   & > ul {
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     gap: 24px;
-    margin-top: 24px;
+    margin-top: 16px;
+    margin-bottom: 6px;
 
     & > li {
       width: auto;

@@ -29,6 +29,7 @@ export const AuthLayout = () => {
         </div>
         <div className="app_background_content"></div>
       </div>
+      <div className="app_log_auth_bg"></div>
     </div>
   )
 }
