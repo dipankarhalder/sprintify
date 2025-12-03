@@ -6,9 +6,11 @@
   display: flex;
   flex-direction: column;
   padding: 0 20px;
+  background: $white;
+  height: calc(100vh - 51px);
+  border-radius: 20px 0 0 0;
 
   .app_data_table_inside {
-    background: $tablebg;
     width: 100%;
     display: flex;
     border-radius: 6px;

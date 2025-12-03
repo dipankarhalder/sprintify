@@ -14,16 +14,16 @@
 
     & > li {
       gap: 6px;
-      width: 33%;
+      width: 50%;
       display: flex;
       flex-wrap: wrap;
       cursor: pointer;
       flex-direction: row;
       justify-content: center;
       align-items: center;
-      padding: 6px 10px;
+      padding: 8px 10px;
       border-radius: 6px;
-      border: 1px solid color.adjust($border, $lightness: -20%);
+      background-color: color.adjust($border, $lightness: 6%);
 
       & > svg {
         width: 16px;
