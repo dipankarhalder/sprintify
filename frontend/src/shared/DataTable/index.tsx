@@ -52,23 +52,15 @@ export const DataTable = <T,>({
   return (
     <div className="app_data_table_cover">
       <div className="app_heading_info">
-        <h2>
-          List of vendors{' '}
-          <span>({table.getFilteredRowModel().rows.length} items)</span>
-        </h2>
-        <div className="app_right_search_sorting">
-          <div className="app_header_search">
-            <Search />
-            <input
-              placeholder={`Search vendors here...`}
-              value={
-                (table.getColumn('name')?.getFilterValue() as string) ?? ''
-              }
-              onChange={(event: { target: { value: any } }) =>
-                table.getColumn('name')?.setFilterValue(event.target.value)
-              }
-            />
-          </div>
+        <div className="app_header_search">
+          <Search />
+          <input
+            placeholder={`Search here...`}
+            value={(table.getColumn('name')?.getFilterValue() as string) ?? ''}
+            onChange={(event: { target: { value: any } }) =>
+              table.getColumn('name')?.setFilterValue(event.target.value)
+            }
+          />
         </div>
       </div>
       <div className="app_data_table_inside">
