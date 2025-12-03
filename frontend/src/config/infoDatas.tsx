@@ -1,7 +1,7 @@
 /** icons */
 import {
   User,
-  Home,
+  Dashboard,
   Deals,
   Phone,
   Tasks,
@@ -47,7 +47,12 @@ export const getMainMenus = () => {
       id: 1,
       label: 'Main Menu',
       children: [
-        { id: 1, icon: <Home />, label: 'Dashboard', path: `/${isUsername}` },
+        {
+          id: 1,
+          icon: <Dashboard />,
+          label: 'Dashboard',
+          path: `/${isUsername}`,
+        },
         { id: 2, icon: <Anasysis />, label: 'Analytics', path: '/' },
       ],
     },
