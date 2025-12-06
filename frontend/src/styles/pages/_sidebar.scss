@@ -57,19 +57,19 @@
         z-index: 2;
         display: flex;
         margin-bottom: 20px;
-        padding: 14px 15px;
+        padding: 20px 15px;
         align-items: center;
         background: $backcol;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.06);
 
         & > span {
           width: 34px;
           height: 34px;
-          background: #2a7b9b;
+          background: $blue-30;
           background: linear-gradient(
             90deg,
             rgba(42, 123, 155, 1) 0%,
-            rgba(87, 199, 133, 1) 50%,
-            rgba(237, 221, 83, 1) 100%
+            rgba(87, 199, 133, 1) 100%
           );
           border-radius: 6px;
         }
@@ -81,14 +81,14 @@
           margin-left: 10px;
 
           & > p {
-            color: $gray-300;
+            color: $gray-40;
             font-size: 11px;
             font-weight: 500;
             line-height: 16px;
           }
 
           & > h5 {
-            color: $btnblue;
+            color: $blue-20;
             font-size: 14px;
             font-weight: 500;
             line-height: 18px;
@@ -114,7 +114,7 @@
             & > p {
               display: flex;
               gap: 10px;
-              color: $btnblue;
+              color: $blue-30;
               font-size: 11px;
               font-weight: 600;
               text-transform: uppercase;
@@ -143,7 +143,7 @@
                   padding: 7px 9px;
                   font-weight: 500;
                   font-size: 14px;
-                  color: $black;
+                  color: $black-100;
                   border-radius: 6px;
                   position: relative;
 
@@ -158,22 +158,22 @@
                     position: absolute;
                     width: 6px;
                     height: 6px;
-                    background: color.adjust($red-300, $lightness: -7%);
+                    background: $red-40;
                     border-radius: 50%;
-                    color: $white;
+                    color: $white-100;
                     text-align: center;
                   }
                 }
 
                 &:hover a,
                 &.activeLink a {
-                  color: $btnblue;
-                  background: $white;
+                  color: $blue-30;
+                  background: $white-100;
                   box-shadow: $shadow-2;
 
                   & > svg > path,
                   & > svg > g > path {
-                    stroke: $btnblue;
+                    stroke: $blue-30;
                   }
                 }
               }
@@ -187,7 +187,7 @@
         margin-top: 20px;
 
         & > h5 {
-          color: $btnblue;
+          color: $blue-50;
           font-size: 14px;
           font-weight: 500;
           margin-bottom: 10px;
@@ -221,6 +221,7 @@
     position: sticky;
     bottom: 0px;
     background: $backcol;
+    box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.06);
 
     & > span {
       width: 35px;
@@ -236,22 +237,22 @@
     }
 
     .app_user_info {
-      width: calc(100% - 75px);
-      margin-left: 5px;
+      width: calc(100% - 80px);
+      margin-left: 10px;
 
       h2 {
         font-size: 14px;
         font-weight: 500;
-        color: $black;
+        color: $black-100;
       }
 
       & > p {
         display: flex;
         align-items: center;
-        color: color.adjust($gray-300, $lightness: 16%);
+        color: $gray-60;
         font-size: 12px;
         font-weight: 500;
-        line-height: 16px;
+        line-height: 14px;
       }
     }
 
@@ -262,14 +263,14 @@
       align-items: center;
       justify-content: center;
       border-radius: 50%;
-      background: color.adjust($red-100, $lightness: 28%);
+      background: $red-100;
 
       & > svg {
         width: 20px;
         height: 20px;
 
         & > path {
-          stroke: color.adjust($red-300, $lightness: -6%);
+          stroke: $red-40;
         }
       }
     }
