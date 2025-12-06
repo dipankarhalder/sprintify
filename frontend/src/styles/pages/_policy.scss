@@ -3,7 +3,7 @@
 
 .app_policy_info {
   width: 100%;
-  border-top: 1px solid color.adjust($border, $lightness: 6%);
+  border-top: 1px solid $black-30;
   margin-top: 28px;
   padding-top: 14px;
 
@@ -16,7 +16,7 @@
     font-weight: 500;
     font-size: 12px;
     margin-bottom: 0px;
-    color: $gray-300;
+    color: $gray-50;
 
     .app_notify {
       position: relative;
@@ -26,12 +26,12 @@
         top: -40px;
         left: 50%;
         width: 230px;
-        color: $white;
+        color: $white-100;
         padding: 8px 12px;
         border-radius: 6px;
         text-align: center;
         transform: translateX(-50%);
-        background: $gray-300;
+        background: $gray-30;
         display: none;
       }
       &:before {
@@ -42,7 +42,7 @@
         top: -12px;
         left: 50%;
         transform: translateX(-50%) rotate(45deg);
-        background: $gray-300;
+        background: $gray-50;
         display: none;
       }
 
@@ -67,7 +67,7 @@
     & > a {
       gap: 5px;
       display: flex;
-      color: $btnblue;
+      color: $blue-40;
       align-items: center;
       text-decoration: underline;
 
@@ -98,7 +98,7 @@
         font-size: 12px;
         justify-content: center;
         align-items: center;
-        color: $btnblue;
+        color: $blue-40;
         text-decoration: underline;
 
         & > svg {

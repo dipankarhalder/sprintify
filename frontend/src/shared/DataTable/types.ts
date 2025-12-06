@@ -5,4 +5,5 @@ export interface DataTableProps<T> {
   data: T[]
   sorting: SortingState
   setSorting: React.Dispatch<React.SetStateAction<SortingState>>
+  pageSize: number
 }

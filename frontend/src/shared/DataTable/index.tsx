@@ -21,6 +21,7 @@ export const DataTable = <T,>({
   data,
   sorting,
   setSorting,
+  pageSize,
 }: DataTableProps<T>) => {
   /** states */
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
@@ -44,7 +45,7 @@ export const DataTable = <T,>({
     onRowSelectionChange: setRowSelection,
     initialState: {
       pagination: {
-        pageSize: 15,
+        pageSize,
       },
     },
   })
@@ -109,7 +110,7 @@ export const DataTable = <T,>({
             </div>
             <div className="app_footer_spcl_info">
               <div className="app_got_page">
-                <p>Row per page</p>
+                <p>Go to page</p>
                 <input
                   type="number"
                   min="1"
@@ -120,6 +121,24 @@ export const DataTable = <T,>({
                     table.setPageIndex(page)
                   }}
                 />
+              </div>
+              <div>
+                <select
+                  value={table.getState().pagination.pageSize}
+                  onChange={e => {
+                    table.setPageSize(Number(e.target.value))
+                  }}
+                >
+                  {[10, 20, 30, 40, 50].map(pageSize => (
+                    <option key={pageSize} value={pageSize}>
+                      Show {pageSize}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                Showing {table.getRowModel().rows.length.toLocaleString()} of{' '}
+                {table.getRowCount().toLocaleString()} Rows
               </div>
             </div>
           </div>

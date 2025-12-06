@@ -58,7 +58,7 @@ export const SignupPage = () => {
   return (
     <div className="app_auth_inside_cover">
       <h1>Create an account</h1>
-      <p>Please create an account to continue</p>
+      <p>Please create an account to continue access the application</p>
       <div className="app_auth_form">
         <form
           onSubmit={e => {

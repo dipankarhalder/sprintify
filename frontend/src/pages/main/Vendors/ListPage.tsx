@@ -45,17 +45,15 @@ export const VendorListPage = () => {
         ),
         cell: ({ row }) => {
           const vendor = row.original
-          return (
-            <Link
-              to={`/vendors/${vendor.id}`}
-              className="text-blue-600 underline hover:text-blue-800"
-            >
-              {vendor.name}
-            </Link>
-          )
+          return <Link to={`/vendors/${vendor.id}`}>{vendor.name}</Link>
         },
       },
-      { accessorKey: 'contactPerson', header: 'Contact Person' },
+      {
+        accessorKey: 'contactPerson',
+        header: ({ column }) => (
+          <SortHeader column={column} title="Contact Person" />
+        ),
+      },
       { accessorKey: 'email', header: 'Email' },
       { accessorKey: 'phone', header: 'Phone' },
       {
@@ -107,6 +105,7 @@ export const VendorListPage = () => {
       data={vendorData.vendors}
       sorting={sorting}
       setSorting={setSorting}
+      pageSize={10}
     />
   )
 }
