@@ -143,7 +143,9 @@ export const SigninPage = () => {
                 }}
                 children={field => (
                   <>
-                    <label htmlFor={field.name}>Password</label>
+                    <label htmlFor={field.name}>
+                      Password <span>*</span>
+                    </label>
                     <input
                       type="password"
                       id={field.name}

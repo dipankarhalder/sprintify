@@ -6,10 +6,12 @@
   display: flex;
   flex-direction: column;
   padding: 0 20px;
-  background: $white;
+  background: $white-100;
   height: calc(100vh - 51px);
+  margin-top: 51px;
   border-radius: 20px 0 0 0;
   box-shadow: $shadow-2;
+  overflow-y: auto;
 
   .app_data_table_inside {
     width: 100%;
@@ -31,7 +33,7 @@
       font-weight: 500;
 
       & > span {
-        color: $gray-300;
+        color: $gray-30;
         margin-left: 10px;
         font-size: 12px;
         font-weight: 500;
@@ -44,8 +46,8 @@
       padding: 0 12px;
       align-items: center;
       border-radius: 6px;
-      background: $white;
-      border: 1px solid color.adjust($inputborder, $lightness: 10%);
+      background: $white-100;
+      border: 1px solid $gray-90;
       overflow: hidden;
       gap: 3px;
 
@@ -60,7 +62,7 @@
         height: 34px;
         font-weight: 500;
         font-size: 13px;
-        color: $black;
+        color: $black-100;
         border: 0px solid transparent;
       }
     }
@@ -68,8 +70,8 @@
 
   .app_data_table_main_cover {
     width: 100%;
-    background: $white;
-    border: 1px solid $tableborder;
+    background: $white-100;
+    border: 1px solid $gray-80;
     border-radius: 6px;
     overflow: auto;
 
@@ -80,14 +82,14 @@
         background: $tablehead;
 
         tr {
-          border-bottom: 1px solid $tableborder;
+          border-bottom: 1px solid $gray-80;
 
           th {
             padding: 0.6rem 1rem;
             text-align: left;
             font-size: 13px;
             font-weight: 500;
-            color: $gray-300;
+            color: $gray-30;
 
             input[type='checkbox'] {
               margin-top: 3px;
@@ -115,7 +117,7 @@
 
       tbody {
         tr {
-          border-bottom: 1px solid color.adjust($border, $lightness: 5%);
+          border-bottom: 1px solid $gray-100;
 
           td {
             text-align: left;
@@ -124,7 +126,7 @@
             font-weight: 500;
 
             a {
-              color: $btnblue;
+              color: $blue-30;
               text-decoration: underline;
             }
 
@@ -144,11 +146,11 @@
                 transition: 0.5s;
 
                 &.app_table_edit_btn {
-                  color: $btnblue;
+                  color: $blue-30;
                 }
 
                 &.app_table_delete_btn {
-                  color: $red-300;
+                  color: $red-40;
                 }
 
                 & > svg {
@@ -168,7 +170,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 14px 18px;
+  padding: 14px 0px 20px;
 
   .app_table_footer_left_side {
     display: flex;
@@ -181,12 +183,12 @@
     display: flex;
 
     & > p {
-      color: $gray-300;
+      color: $gray-30;
       font-size: 14px;
       font-weight: 500;
 
       & > span {
-        color: $black;
+        color: $black-100;
       }
     }
   }
@@ -202,7 +204,7 @@
       gap: 8px;
 
       & > p {
-        color: $gray-300;
+        color: $gray-30;
         margin-left: 10px;
         font-size: 14px;
         font-weight: 500;
@@ -215,8 +217,8 @@
         border-radius: 6px;
         font-weight: 500;
         font-size: 14px;
-        color: $black;
-        border: 1px solid $inputborder;
+        color: $black-100;
+        border: 1px solid $gray-50;
       }
     }
   }
@@ -230,7 +232,7 @@
       width: auto;
 
       & > p {
-        color: $gray-300;
+        color: $gray-30;
         margin-left: 10px;
         font-size: 14px;
         font-weight: 500;
@@ -241,20 +243,25 @@
       width: auto;
       display: flex;
       align-items: center;
-      gap: 2px;
+      gap: 5px;
 
       .app_pagination_btn {
         display: flex;
         padding: 10px;
         cursor: pointer;
         align-items: center;
-        border: 0px solid transparent;
-        gap: 5px;
-        background: $white;
+        border: 1px solid $gray-80;
+        background: $white-100;
+        border-radius: 6px;
 
         & > svg {
           width: 14px;
           height: 14px;
+        }
+
+        &:disabled {
+          color: $gray-70;
+          border: 1px solid $gray-100;
         }
       }
     }
